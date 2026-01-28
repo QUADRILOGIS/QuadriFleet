@@ -1,4 +1,10 @@
-@import "tailwindcss";
+@layer theme, base, primereact, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "primereact/resources/themes/lara-light-blue/theme.css" layer(primereact);
+@import "primeicons/primeicons.css" layer(primereact);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 :root {
   --background: #ffffff;
