@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PrimeReactProvider } from "primereact/api";
 import { Geist, Geist_Mono } from "next/font/google";
+import SideBar from "@/components/SideBar";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -30,7 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider>
-          <PrimeReactProvider>{children}</PrimeReactProvider>
+          <PrimeReactProvider>         
+            <div className="flex">
+            <SideBar />
+              <main className="flex-1 lg:ml-0 w-full">{children}</main>
+            </div></PrimeReactProvider>
         </NextIntlClientProvider>
       </body>
     </html>

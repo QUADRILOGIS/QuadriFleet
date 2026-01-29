@@ -1,5 +1,13 @@
 {
   "HomePage": {
     "title": "Bonjour le monde!"
+  },
+  "SideBar": {
+    "home": "Accueil",
+    "fleetManagement": "Gestion de flotte",
+    "alerts": "Alertes",
+    "settings": "Paramètres",
+    "logoAlt": "Logo Quadrilogis",
+    "menu": "Menu"
   }
 }

@@ -1,5 +1,13 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "SideBar": {
+    "home": "Home",
+    "fleetManagement": "Fleet Management",
+    "alerts": "Alerts",
+    "settings": "Settings",
+    "logoAlt": "Quadrilogis Logo",
+    "menu": "Menu"
   }
 }
