@@ -8,6 +8,7 @@ import { Button } from 'primereact/button';
 import Image from 'next/image';
 import 'primeicons/primeicons.css';
 import { useTranslations } from 'next-intl';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export default function SideBar() {
   const t = useTranslations("SideBar");
@@ -53,6 +54,10 @@ export default function SideBar() {
           </Link>
         ))}
       </nav>
+      <div className="mt-auto pt-6 flex flex-col">
+        TEMP :
+       <LocaleSwitcher />
+      </div>
     </div>
   );
 
