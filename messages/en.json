@@ -94,5 +94,24 @@
     "alertCritic": "Critical",
     "alertWarning": "Warning",
     "alertSolved": "Solved"
+  },
+  "SettingsPage": {
+    "title": "Settings",
+    "signOut": "Sign out",
+    "languageLabel": "Language",
+    "maintenanceTitle": "Trailer maintenance alerts",
+    "maintenanceDescription": "Define the mileage that triggers an alert for each component.",
+    "parts": {
+      "tires": "Tires",
+      "brakes": "Brakes",
+      "suspension": "Suspension",
+      "axles": "Axles",
+      "battery": "Battery",
+      "lubrication": "Lubrication",
+      "engine": "Engine"
+    }
+  },
+  "AlertThresholds": {
+    "thresholdLabel": "Alert threshold"
   }
 }

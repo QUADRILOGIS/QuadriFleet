@@ -94,5 +94,24 @@
     "alertCritic": "Critique",
     "alertWarning": "Avertissement",
     "alertSolved": "Résolu"
+  },
+  "SettingsPage": {
+    "title": "Paramètres",
+    "signOut": "Déconnexion",
+    "languageLabel": "Langue",
+    "maintenanceTitle": "Alertes maintenance remorques",
+    "maintenanceDescription": "Définissez le kilométrage qui déclenche une alerte pour chaque composant.",
+    "parts": {
+      "tires": "Pneus",
+      "brakes": "Freins",
+      "suspension": "Suspension",
+      "axles": "Essieux",
+      "battery": "Batterie",
+      "lubrication": "Graissage",
+      "engine": "Moteur"
+    }
+  },
+  "AlertThresholds": {
+    "thresholdLabel": "Seuil d'alerte"
   }
 }
