@@ -1,6 +1,31 @@
 {
+  "LoginPage": {
+    "title": "Connexion",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Connexion",
+    "noAccount": "Pas encore inscrit ?",
+    "forgotPassword": "Mot de passe oublié ?",
+    "errors": {
+      "loginFailed": "Connexion impossible."
+    }
+  },
+  "RegisterPage": {
+    "title": "Inscription",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Créer un compte",
+    "alreadyAccount": "Déjà inscrit ?",
+    "errors": {
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "registerFailed": "Création de compte impossible."
+    }
+  },
   "HomePage": {
-    "title": "Bonjour le monde!"
+    "title": "Accueil"
   },
   "SideBar": {
     "home": "Accueil",

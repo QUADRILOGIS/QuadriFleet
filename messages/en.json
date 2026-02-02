@@ -1,6 +1,31 @@
 {
+  "LoginPage": {
+    "title": "Sign in",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Sign in",
+    "noAccount": "No account yet?",
+    "forgotPassword": "Forgot password?",
+    "errors": {
+      "loginFailed": "Unable to sign in."
+    }
+  },
+  "RegisterPage": {
+    "title": "Sign up",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "submit": "Create account",
+    "alreadyAccount": "Already registered?",
+    "errors": {
+      "passwordMismatch": "Passwords do not match.",
+      "registerFailed": "Unable to create account."
+    }
+  },
   "HomePage": {
-    "title": "Hello world!"
+    "title": "Home"
   },
   "SideBar": {
     "home": "Home",

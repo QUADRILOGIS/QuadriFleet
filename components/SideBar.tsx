@@ -15,6 +15,11 @@ export default function SideBar() {
 
   const pathname = usePathname();
   const [mobileVisible, setMobileVisible] = useState(false);
+  const isAuthRoute = pathname === "/login" || pathname === "/register";
+
+  if (isAuthRoute) {
+    return null;
+  }
 
   const menuItems = [
     { label: t('home'), icon: 'pi pi-home', path: '/' },

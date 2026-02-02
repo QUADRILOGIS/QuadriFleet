@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import AlertThresholds, {
   type AlertThresholdItem,
@@ -8,9 +9,11 @@ import AlertThresholds, {
 import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
+import { apiClient } from "@/lib/api/client";
 
 export default function Page() {
   const t = useTranslations("SettingsPage");
+  const router = useRouter();
 
   const alertConfig: AlertThresholdItem[] = [
     {
@@ -75,6 +78,13 @@ export default function Page() {
     Object.fromEntries(alertConfig.map(({ key, value }) => [key, value])),
   );
 
+  const handleLogout = async () => {
+    await apiClient.post("/api/auth/logout");
+
+    document.cookie = "auth_token=; path=/; max-age=0";
+    router.push("/login");
+  };
+
   return (
     <main className="p-6">
       <div className="flex flex-col gap-6">
@@ -87,6 +97,7 @@ export default function Page() {
             icon="pi pi-sign-out"
             severity="secondary"
             outlined
+            onClick={handleLogout}
           />
         </div>
 

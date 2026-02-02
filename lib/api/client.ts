@@ -1,7 +1,6 @@
 // Configuration du client API
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string>;
@@ -9,13 +8,25 @@ interface RequestOptions extends RequestInit {
 
 class ApiClient {
   private baseUrl: string;
-  private defaultHeaders: HeadersInit;
 
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl;
-    this.defaultHeaders = {
-      'Content-Type': 'application/json',
-      ...(API_TOKEN && { Authorization: `Bearer ${API_TOKEN}` }),
+  }
+
+  private getAuthTokenFromCookie(): string | undefined {
+    return document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("auth_token="))
+      ?.split("=")[1];
+  }
+
+  private buildHeaders(extra?: HeadersInit): HeadersInit {
+    const token = this.getAuthTokenFromCookie();
+
+    return {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...extra,
     };
   }
 
@@ -34,8 +45,8 @@ class ApiClient {
     const url = this.buildUrl(endpoint, params);
 
     const response = await fetch(url, {
-      method: 'GET',
-      headers: this.defaultHeaders,
+      method: "GET",
+      headers: this.buildHeaders(fetchOptions.headers),
       ...fetchOptions,
     });
 
@@ -51,8 +62,8 @@ class ApiClient {
     const url = this.buildUrl(endpoint, params);
 
     const response = await fetch(url, {
-      method: 'POST',
-      headers: this.defaultHeaders,
+      method: "POST",
+      headers: this.buildHeaders(fetchOptions.headers),
       body: data ? JSON.stringify(data) : undefined,
       ...fetchOptions,
     });
@@ -69,8 +80,8 @@ class ApiClient {
     const url = this.buildUrl(endpoint, params);
 
     const response = await fetch(url, {
-      method: 'PUT',
-      headers: this.defaultHeaders,
+      method: "PUT",
+      headers: this.buildHeaders(fetchOptions.headers),
       body: data ? JSON.stringify(data) : undefined,
       ...fetchOptions,
     });
@@ -87,8 +98,8 @@ class ApiClient {
     const url = this.buildUrl(endpoint, params);
 
     const response = await fetch(url, {
-      method: 'DELETE',
-      headers: this.defaultHeaders,
+      method: "DELETE",
+      headers: this.buildHeaders(fetchOptions.headers),
       ...fetchOptions,
     });
 

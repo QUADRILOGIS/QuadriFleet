@@ -2,6 +2,7 @@
 
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
+@import "leaflet/dist/leaflet.css" layer(base);
 @import "primereact/resources/themes/lara-light-blue/theme.css" layer(primereact);
 @import "primeicons/primeicons.css" layer(primereact);
 @import "tailwindcss/utilities.css" layer(utilities);

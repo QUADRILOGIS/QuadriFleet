@@ -3,7 +3,6 @@ import { PrimeReactProvider } from "primereact/api";
 import { Geist, Geist_Mono } from "next/font/google";
 import SideBar from "@/components/SideBar";
 import "./globals.css";
-import "./leaflet.css";
 import { NextIntlClientProvider } from "next-intl";
 
 const geistSans = Geist({
