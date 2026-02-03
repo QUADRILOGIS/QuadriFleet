@@ -1,26 +1,21 @@
-import { ProgressBar } from "primereact/progressbar";
 import { Tag } from "primereact/tag";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useTrailerAlertsCount } from "@/lib/api";
 import { reverseGeocode } from "@/lib/geocoding";
+import { Battery, MapPin } from "lucide-react";
 import { 
   determineStatus, 
-  calculateBatteryLevel, 
-  getBatteryTextColor, 
-  getBatteryIconColor,
-  formatSerialNumber,
-  formatDistance,
+  getBatteryTextColor,
+  getBatteryHexColor,
   getStatusSeverity,
 } from "@/utils";
-import { AlertButton } from "@/components/ui";
 import type { ApiTrailer } from "@/types";
 
 type TrailerListItemProps = {
   trailer: ApiTrailer;
 };
-
 
 export default function TrailerListItem({ trailer }: TrailerListItemProps) {
   const t = useTranslations("TrailerCard");
@@ -29,16 +24,11 @@ export default function TrailerListItem({ trailer }: TrailerListItemProps) {
   
   useEffect(() => {
     reverseGeocode(trailer.actual_pos_lat, trailer.actual_pos_long)
-      .then(setAddress);
+      .then(setAddress)
+      .catch(() => setAddress(`${trailer.actual_pos_lat}, ${trailer.actual_pos_long}`));
   }, [trailer.actual_pos_lat, trailer.actual_pos_long]);
   
   const status = determineStatus(trailer);
-  const batteryRemaining = calculateBatteryLevel(trailer);
-  const serial = formatSerialNumber(trailer.id);
-  const mileage = formatDistance(trailer.total_km_traveled);
-  
-  //TODO en attendant les vraies données ou supprimé si pas besoin
-  const weight = (trailer.id * 73) % 601;
   
   const getStatusLabel = (status: string) => {
     switch (status) {
@@ -52,62 +42,66 @@ export default function TrailerListItem({ trailer }: TrailerListItemProps) {
 
   return (
     <Link href={`/fleet/${trailer.id}`} className="block">
-      <div className="bg-white rounded-lg border p-4 hover:shadow-md transition-shadow cursor-pointer">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-base">{serial}</h3>
-          <Tag value={getStatusLabel(status)} severity={getStatusSeverity(status)} className="text-xs" />
-        </div>
-
-        <div className="flex items-center justify-between mb-2 text-sm">
-          <div className="flex items-center gap-1.5">
-            <i className={`pi pi-percentage ${getBatteryIconColor(batteryRemaining)} text-xs`} />
-            <span className={`font-semibold ${getBatteryTextColor(batteryRemaining)}`}>{batteryRemaining.toFixed(0)}%</span>
+      <div className="bg-white rounded-xl border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer">
+        {/* Header: Serial + Status */}
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1 min-w-0 pr-3">
+            <h3 className="font-bold text-base text-gray-900">{trailer.serial_number}</h3>
+            
+            {/* Battery */}
+            <div className="flex items-center gap-1.5 mt-1">
+              <Battery 
+                size={16} 
+                strokeWidth={2}
+                color={getBatteryHexColor(trailer.battery_level || 0)}
+              />
+              <span className={`font-medium text-sm ${getBatteryTextColor(trailer.battery_level || 0)}`}>
+                {(trailer.battery_level || 0).toFixed(0)}%
+              </span>
+            </div>
+            
+            {/* Location */}
+            <div className="flex items-start gap-1.5 mt-1 text-gray-500 text-sm">
+              <MapPin size={14} className="flex-shrink-0 mt-0.5" />
+              <span className="break-words">{address || t('loading')}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5">
-            <i className="pi pi-box text-gray-400 text-xs" />
-            <span className="text-gray-600 text-xs">{weight}/600 kg</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <i className="pi pi-map text-blue-500 text-xs" />
-            <span className="text-gray-500 text-xs">{trailer.daily_km_traveled}/{trailer.autonomy} km</span>
-          </div>
-        </div>
-
-        <ProgressBar 
-          value={batteryRemaining} 
-          showValue={false}
-          style={{ height: '8px' }}
-          className="mb-3"
-        />
-
-        {/* Localisation */}
-        <div className="flex items-center gap-2 text-gray-600 text-sm mb-3">
-          <i className="pi pi-map-marker text-gray-400" />
-          <span className="truncate flex-1">{address || t('loading')}</span>
-        </div>
-
-        {/* Distance totale */}
-        <div className="flex items-center justify-between text-sm pt-3 border-t border-gray-100">
-          <span className="text-gray-500">{t('totalDistance')}</span>
-          <span className="font-semibold">{mileage}</span>
-        </div>
-
-        {/* Boutons Alertes et Incidents */}
-        <div className="flex gap-2 mt-3">
-          <AlertButton 
-            icon="pi pi-exclamation-triangle"
-            label={`Alerte${alertCount > 1 ? 's' : ''}`}
-            count={alertCount}
-            variant="danger"
-            onClick={(e) => e.preventDefault()}
+          
+          <Tag 
+            value={getStatusLabel(status)} 
+            severity={getStatusSeverity(status)} 
+            className="text-xs px-3 py-1 rounded-full flex-shrink-0"
           />
-          <AlertButton 
-            icon="pi pi-times-circle"
-            label={`Incident${incidentCount > 1 ? 's' : ''}`}
-            count={incidentCount}
-            variant="warning"
+        </div>
+
+        {/* Distance parcourue */}
+        <div className="flex items-baseline gap-2 mb-3">
+          <span className="text-gray-500 text-sm">Distance parcourue</span>
+          <span className="font-bold text-xl text-gray-900">{trailer.daily_km_traveled} km</span>
+        </div>
+
+        {/* Alertes et Incidents */}
+        <div className="flex gap-2">
+          <button 
+            className={`flex-1 px-3 py-2 rounded-full text-sm font-medium border transition-colors ${
+              alertCount > 0 
+                ? 'border-gray-200 bg-orange-50 text-orange-700' 
+                : 'border-gray-200 bg-gray-50 text-gray-500'
+            }`}
             onClick={(e) => e.preventDefault()}
-          />
+          >
+            {alertCount} alerte{alertCount !== 1 ? 's' : ''}
+          </button>
+          <button 
+            className={`flex-1 px-3 py-2 rounded-full text-sm font-medium border transition-colors ${
+              incidentCount > 0 
+                ? 'border-gray-200 bg-red-50 text-red-700' 
+                : 'border-gray-200 bg-gray-50 text-gray-500'
+            }`}
+            onClick={(e) => e.preventDefault()}
+          >
+            {incidentCount} incident{incidentCount !== 1 ? 's' : ''}
+          </button>
         </div>
       </div>
     </Link>

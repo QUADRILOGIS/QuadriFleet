@@ -3,20 +3,13 @@
  */
 
 import type { ApiTrailer } from "@/types";
-import { calculateBatteryLevel } from "./battery";
 
 // TODO Position de l'entrepôt à Nantes à changer avec les données de la page params
 export const WAREHOUSE_POSITION = {
-  lat: 47.2184,
-  lng: -1.5536,
+  lat: 47.218400,
+  lng: -1.553600,
 };
 
-/**
- * Génère le numéro de série formaté
- */
-export function formatSerialNumber(id: number): string {
-  return `QU-${id.toString().padStart(3, '0')}-IS`;
-}
 
 /**
  * Formate une distance en km avec séparateur français
@@ -57,7 +50,7 @@ export function isAtWarehouse(trailer: ApiTrailer): boolean {
     WAREHOUSE_POSITION.lat,
     WAREHOUSE_POSITION.lng
   );
-  return distance < 0.1;
+  return distance < 0.5;
 }
 
 /**
@@ -65,24 +58,18 @@ export function isAtWarehouse(trailer: ApiTrailer): boolean {
  */
 export function determineStatus(trailer: ApiTrailer): string {
   const atWarehouse = isAtWarehouse(trailer);
-  const batteryLevel = calculateBatteryLevel(trailer);
 
   // 1. Maintenance : disponibilité technique < 50%
   if (trailer.technical_disponibility < 50) {
     return "Maintenance";
   }
 
-  // 2. En charge : à l'entrepôt ET batterie < 75%
-  if (atWarehouse && batteryLevel < 75) {
-    return "Charging";
-  }
-
-  // 3. Disponible : 0km daily ET >50km autonomie ET à l'entrepôt
-  if (trailer.daily_km_traveled === 0 && trailer.autonomy > 50 && atWarehouse) {
+  // 2. Disponible : 0km daily ET >50km autonomie ET à l'entrepôt
+  if (atWarehouse) {
     return "Available";
   }
 
-  // 4. En service : autonomie <50km ET daily_km >0 ET pas à l'entrepôt
+  // 3. En service : autonomie <50km ET daily_km >0 ET pas à l'entrepôt
   if (trailer.autonomy < 50 && trailer.daily_km_traveled > 0 && !atWarehouse) {
     return "On Mission";
   }

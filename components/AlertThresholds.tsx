@@ -61,7 +61,7 @@ export default function AlertThresholds({
         {items.map((alert) => (
           <div
             key={alert.key}
-            className="rounded-lg border border-surface-border p-4"
+            className="rounded-lg border border-gray-200 p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>

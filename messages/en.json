@@ -29,6 +29,7 @@
   },
   "SideBar": {
     "home": "Home",
+    "stats": "Statistics",
     "fleetManagement": "Fleet Management",
     "alerts": "Alerts",
     "settings": "Settings",
@@ -50,6 +51,9 @@
   "FleetPage": {
     "title": "Fleet Management",
     "vehicles": "vehicles",
+    "vehiclesCount": "vehicles",
+    "activeCount": "active",
+    "ofWhich": "of which",
     "alerts": "alerts",
     "mapTitle": "Fleet Map",
     "fleetListTitle": "Vehicle Fleet",
@@ -74,7 +78,15 @@
     "cardSerial": "R-Co Card Serial",
     "cardSerialPlaceholder": "e.g. CARD-12345",
     "loading": "Loading trailers...",
-    "loadNotAvailable": "N/A"
+    "loadNotAvailable": "N/A",
+    "noVehicle": "No bikes",
+    "noVehicleOn": "No bikes on this page",
+    "withAlerts": "with alerts",
+    "withIncidents": "with incidents",
+    "viewList": "List view",
+    "viewMap": "Map view",
+    "filterAlerts": "Filter alerts",
+    "filterIncidents": "Filter incidents"
   },
   "TrailerDetail": {
     "title": "Trailer Details",

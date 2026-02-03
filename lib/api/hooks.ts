@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getTrailers, getTrailerById, getTrailerAlertsAndIncidents } from './trailers';
-import type { ApiTrailer, TrailerDetails } from '@/types';
+import type { ApiTrailer, TrailerDetails, Alert, Incident } from '@/types';
 
 
 interface UseTrailersReturn {
@@ -132,4 +132,102 @@ export function useTrailerAlertsCount(trailerId: number | string): UseTrailerAle
     loading,
     error,
   };
+}
+
+interface UseAlertsReturn {
+  alerts: Alert[];
+  loading: boolean;
+  error: Error | null;
+}
+
+/**
+ * Hook pour récupérer toutes les alertes de tous les trailers
+ */
+export function useAlerts(): UseAlertsReturn {
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const { trailers } = useTrailers();
+
+  useEffect(() => {
+    const fetchAllAlerts = async () => {
+      if (trailers.length === 0) return;
+      
+      try {
+        setLoading(true);
+        setError(null);
+        const allAlerts: Alert[] = [];
+        
+        for (const trailer of trailers) {
+          try {
+            const { alerts } = await getTrailerAlertsAndIncidents(trailer.id);
+            if (alerts) {
+              allAlerts.push(...alerts);
+            }
+          } catch {
+            // Continue with other trailers
+          }
+        }
+        
+        setAlerts(allAlerts);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error('Unknown error'));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllAlerts();
+  }, [trailers]);
+
+  return { alerts, loading, error };
+}
+
+interface UseIncidentsReturn {
+  incidents: Incident[];
+  loading: boolean;
+  error: Error | null;
+}
+
+/**
+ * Hook pour récupérer tous les incidents de tous les trailers
+ */
+export function useIncidents(): UseIncidentsReturn {
+  const [incidents, setIncidents] = useState<Incident[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const { trailers } = useTrailers();
+
+  useEffect(() => {
+    const fetchAllIncidents = async () => {
+      if (trailers.length === 0) return;
+      
+      try {
+        setLoading(true);
+        setError(null);
+        const allIncidents: Incident[] = [];
+        
+        for (const trailer of trailers) {
+          try {
+            const { incidents } = await getTrailerAlertsAndIncidents(trailer.id);
+            if (incidents) {
+              allIncidents.push(...incidents);
+            }
+          } catch {
+            // Continue with other trailers
+          }
+        }
+        
+        setIncidents(allIncidents);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error('Unknown error'));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllIncidents();
+  }, [trailers]);
+
+  return { incidents, loading, error };
 }

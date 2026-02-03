@@ -51,9 +51,9 @@ export function getAlertSeverity(status: string): TagSeverity {
  */
 export function getSeriousnessColor(seriousness: string): string {
   const level = parseInt(seriousness);
-  if (level >= 7) return "bg-red-50 border-red-200";
-  if (level >= 4) return "bg-orange-50 border-orange-200";
-  return "bg-yellow-50 border-yellow-200";
+  if (level >= 7) return "bg-red-50 border-gray-200";
+  if (level >= 4) return "bg-orange-50 border-gray-200";
+  return "bg-yellow-50 border-gray-200";
 }
 
 /**

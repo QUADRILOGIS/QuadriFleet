@@ -13,10 +13,8 @@ import {
   determineStatus,
   sortAlerts,
   sortIncidents,
-  calculateBatteryLevel,
   getBatteryTextColor,
   getStatusStyle,
-  formatSerialNumber,
   formatDate,
   calculateAge,
 } from "@/utils";
@@ -42,7 +40,6 @@ export default function TrailerDetailPage() {
 
   useEffect(() => {
     if (!data?.trailer) return;
-    //Transformer les coordonnées GPS en adresse 
     reverseGeocode(data.trailer.actual_pos_lat, data.trailer.actual_pos_long)
       .then(setAddress);
   }, [data?.trailer]);
@@ -64,9 +61,7 @@ export default function TrailerDetailPage() {
   }
 
   const { trailer, alerts, performance, recent_incidents } = data;
-  const serial = formatSerialNumber(trailer.id);
   const status = determineStatus(trailer);
-  const batteryRemaining = calculateBatteryLevel(trailer);
   const vehicleAge = calculateAge(trailer.purchased_date);
 
   const sortedAlerts = sortAlerts(alerts);
@@ -106,7 +101,7 @@ export default function TrailerDetailPage() {
             />
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-semibold">{serial}</h1>
+                <h1 className="text-2xl font-semibold">{trailer.serial_number}</h1>
                 <Tag value={getStatusLabel(status)} style={getStatusStyle(status)} className="text-xs" />
               </div>
               <p className="text-sm text-gray-600 flex items-center gap-2 mt-1">
@@ -134,7 +129,7 @@ export default function TrailerDetailPage() {
           {/* Colonne gauche */}
           <div className="xl:col-span-2 flex flex-col gap-6">
             {/* Carte */}
-            <div className="bg-white rounded-lg border p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
               <h2 className="text-lg font-semibold mb-3">{t("location")}</h2>
               <div className="h-[271px] rounded-lg overflow-hidden">
                 <TrailerMap
@@ -146,7 +141,7 @@ export default function TrailerDetailPage() {
             </div>
 
             {/* Stats journalières */}
-            <div className="bg-white rounded-lg border p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
               <h2 className="text-lg font-semibold mb-4">{t("dailyStats")}</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
@@ -161,8 +156,8 @@ export default function TrailerDetailPage() {
                 </div>
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
                   <i className="pi pi-percentage text-2xl text-green-500 mb-2" />
-                  <p className={`text-2xl font-bold ${getBatteryTextColor(batteryRemaining)}`}>
-                    {batteryRemaining.toFixed(0)}%
+                  <p className={`text-2xl font-bold ${getBatteryTextColor(trailer.battery_level || 0)}`}>
+                    {(trailer.battery_level || 0).toFixed(0)  }%
                   </p>
                   <p className="text-sm text-gray-500">{t("battery")}</p>
                 </div>
@@ -186,7 +181,7 @@ export default function TrailerDetailPage() {
             </div>
 
             {/* Bilan d'exploitation */}
-            <div className="bg-white rounded-lg border p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
               <h2 className="text-lg font-semibold mb-4">{t("totals")}</h2>
               <div className="grid grid-cols-2 gap-3">
                 <div className="text-center p-3 bg-blue-50 rounded-lg">
@@ -209,13 +204,13 @@ export default function TrailerDetailPage() {
             </div>
 
             {/* Historique des trajets */}
-            <div className="bg-white rounded-lg border p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
               <h2 className="text-lg font-semibold mb-4">{t("recentTrips")}</h2>
               {performance.length > 0 ? (
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b">
+                      <tr className="border-b border-gray-200">
                         <th className="text-left py-2 px-3">{t("date")}</th>
                         <th className="text-right py-2 px-3">{t("distance")}</th>
                         <th className="text-right py-2 px-3">{t("energy")}</th>
@@ -224,7 +219,7 @@ export default function TrailerDetailPage() {
                     </thead>
                     <tbody>
                       {performance.map((perf, index) => (
-                        <tr key={index} className="border-b hover:bg-gray-50">
+                        <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                           <td className="py-3 px-3">{formatDate(perf.date)}</td>
                           <td className="text-right py-3 px-3">{perf.distance} km</td>
                           <td className="text-right py-3 px-3">{perf.energy} kWh</td>
@@ -261,26 +256,26 @@ export default function TrailerDetailPage() {
             />
 
             {/* Infos véhicule */}
-            <div className="bg-white rounded-lg border p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
               <h2 className="text-lg font-semibold mb-4">{t("vehicleInfo")}</h2>
               <div className="space-y-3">
-                <div className="flex justify-between items-center py-2 border-b">
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">{t("purchaseDate")}</span>
                   <span className="font-medium">{formatDate(trailer.purchased_date)}</span>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b">
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">{t("vehicleAge")}</span>
                   <span className="font-medium">{vehicleAge} {t("years")}</span>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b">
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">{t("autonomyMax")}</span>
                   <span className="font-medium">{trailer.autonomy} km</span>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b">
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">{t("consumption100km")}</span>
                   <span className="font-medium">{trailer.energy_consumption_per_100_km} kWh</span>
                 </div>
-                <div className="flex justify-between items-center py-2 border-b">
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-600">{t("availability")}</span>
                   <span className="font-medium">{trailer.technical_disponibility}%</span>
                 </div>

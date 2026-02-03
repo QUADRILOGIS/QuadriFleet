@@ -16,6 +16,8 @@ export interface ApiTrailer {
   autonomy: number;
   total_km_traveled: number;
   active_alerts_count?: string;
+  battery_level?: number;
+  serial_number?: string;
 }
 
 export interface Alert {

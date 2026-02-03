@@ -34,7 +34,7 @@ export default function RootLayout({
           <PrimeReactProvider>         
             <div className="flex">
             <SideBar />
-              <main className="flex-1 lg:ml-0 w-full">{children}</main>
+              <main className="flex-1 lg:ml-0 w-full pb-20 lg:pb-0">{children}</main>
             </div></PrimeReactProvider>
         </NextIntlClientProvider>
       </body>

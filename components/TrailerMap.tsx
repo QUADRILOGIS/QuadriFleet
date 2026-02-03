@@ -89,7 +89,7 @@ export default function TrailerMap({ lat, lng, status, vehicles, showLegend = fa
     const defaultCenter: [number, number] = [47.2184, -1.5536]; // TODO Nantes à changer avec coordonées entrepot de param
     
     return (
-      <div className="h-full rounded-lg overflow-hidden border">
+      <div className="h-full rounded-lg overflow-hidden border border-gray-200">
         <MapContainer
           center={defaultCenter}
           zoom={12}
@@ -176,11 +176,6 @@ export default function TrailerMap({ lat, lng, status, vehicles, showLegend = fa
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={[lat, lng]} icon={createCustomIcon(status)}>
-          <Popup>
-            <div className="text-sm">
-              <strong>Position actuelle</strong>
-            </div>
-          </Popup>
         </Marker>
       </MapContainer>
     );

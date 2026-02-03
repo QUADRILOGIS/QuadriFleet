@@ -13,13 +13,13 @@ interface IncidentListProps {
 
 export default function IncidentList({ incidents, title, noIncidentsText, severityLabel }: IncidentListProps) {
   return (
-    <div className="bg-white rounded-lg border p-4">
+    <div className="bg-white rounded-lg border border-gray-200 p-4">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">{title}</h2>
         <Tag value={incidents.length.toString()} severity="danger" />
       </div>
       {incidents.length > 0 ? (
-        <div className="space-y-3">
+        <div className={incidents.length > 3 ? "space-y-3 max-h-[300px] overflow-y-scroll" : "space-y-3"}>
           {incidents.map((incident) => (
             <div
               key={incident.id}

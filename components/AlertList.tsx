@@ -13,17 +13,17 @@ interface AlertListProps {
 
 export default function AlertList({ alerts, title, noAlertsText, getAlertLabel }: AlertListProps) {
   return (
-    <div className="bg-white rounded-lg border p-4">
+    <div className="bg-white rounded-lg border border-gray-200 p-4">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">{title}</h2>
         <Tag value={alerts.length.toString()} severity="danger"/>
       </div>
       {alerts.length > 0 ? (
-        <div className="space-y-3">
+        <div className={alerts.length > 3 ? "space-y-3 max-h-[268px] overflow-y-scroll" : "space-y-3"}>
           {alerts.map((alert) => (
             <div
               key={alert.id}
-              className="p-3 bg-orange-50 border border-orange-200 rounded-lg"
+              className="p-3 bg-orange-50 border border-gray-200 rounded-lg"
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="font-medium text-orange-800">{alert.piece_name}</span>

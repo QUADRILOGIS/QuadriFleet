@@ -1,90 +1,119 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sidebar } from 'primereact/sidebar';
-import { Button } from 'primereact/button';
 import Image from 'next/image';
-import 'primeicons/primeicons.css';
 import { useTranslations } from 'next-intl';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
+import { LayoutGrid, BarChart3, Bike, AlertTriangle, Settings, LucideIcon } from 'lucide-react';
+
+interface MenuItem {
+  label: string;
+  icon: LucideIcon;
+  path: string;
+  mobileOnly: boolean;
+}
 
 export default function SideBar() {
   const t = useTranslations("SideBar");
 
   const pathname = usePathname();
-  const [mobileVisible, setMobileVisible] = useState(false);
   const isAuthRoute = pathname === "/login" || pathname === "/register";
 
   if (isAuthRoute) {
     return null;
   }
 
-  const menuItems = [
-    { label: t('home'), icon: 'pi pi-home', path: '/' },
-    { label: t('fleetManagement'), icon: 'pi pi-warehouse', path: '/fleet' },
-    { label: t('alerts'), icon: 'pi pi-bell', path: '/alerts' },
-    { label: t('settings'), icon: 'pi pi-cog', path: '/settings' },
+  const menuItems: MenuItem[] = [
+    { label: t('home'), icon: LayoutGrid, path: '/', mobileOnly: false },
+    { label: t('stats'), icon: BarChart3, path: '/stats', mobileOnly: true },
+    { label: t('fleetManagement'), icon: Bike, path: '/fleet', mobileOnly: false },
+    { label: t('alerts'), icon: AlertTriangle, path: '/alerts', mobileOnly: false },
+    { label: t('settings'), icon: Settings, path: '/settings', mobileOnly: false },
   ];
 
-  const sidebarContent = (
+  const desktopMenuItems = menuItems.filter(item => !item.mobileOnly);
+
+  // Desktop Sidebar Content
+  const desktopSidebarContent = (
     <div className="flex flex-col h-full p-4">
-      <div className="flex justify-center mb-6">
+      {/* Logo and App Name */}
+      <div className="flex items-center gap-3 mb-6">
         <Image
           src="/logo.svg"
           alt={t('logoAlt')}
-          width={50}
-          height={20}
+          width={40}
+          height={40}
           priority
         />
+        <span className="text-xl font-bold text-gray-800">QuadriFleet</span>
       </div>
+
+      {/* Navigation */}
       <nav className="flex flex-col gap-2">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            href={item.path}
-            onClick={() => setMobileVisible(false)}
-            className={`
-              flex items-center gap-3 px-4 py-3 rounded-md transition-colors
-              ${
-                pathname === item.path
-                  ? 'bg-primary text-primary-contrast font-medium'
-                  : 'text-surface-700 hover:bg-surface-100'
-              }
-            `}
-          >
-            <i className={`${item.icon} text-xl`}></i>
-            <span className="text-base">{item.label}</span>
-          </Link>
-        ))}
+        {desktopMenuItems.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <Link
+              key={item.path}
+              href={item.path}
+              className={`
+                flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+                ${
+                  pathname === item.path
+                    ? 'bg-primary text-primary-contrast font-medium'
+                    : 'text-surface-700 hover:bg-surface-100'
+                }
+              `}
+            >
+              <IconComponent size={20} />
+              <span className="text-base">{item.label}</span>
+            </Link>
+          );
+        })}
       </nav>
+
+      {/* Footer with LocaleSwitcher */}
       <div className="mt-auto pt-6 flex flex-col">
-        TEMP :
-       <LocaleSwitcher />
+        <LocaleSwitcher />
       </div>
+    </div>
+  );
+
+
+  const mobileBottomNav = (
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 safe-area-inset-bottom">
+      <nav className="flex justify-around items-center h-16 px-4">
+        {menuItems.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <Link
+              key={item.path}
+              href={item.path}
+              className={`
+                flex items-center justify-center w-12 h-12 rounded-full transition-all duration-200
+                ${
+                  pathname === item.path
+                    ? 'bg-gray-100 text-gray-900'
+                    : 'text-gray-400 hover:text-gray-600'
+                }
+              `}
+            >
+              <IconComponent size={22} />
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
 
   return (
     <>
-      <Button
-        icon="pi pi-bars"
-        onClick={() => setMobileVisible(true)}
-        className="lg:hidden fixed top-4 left-4 z-50"
-        rounded
-        aria-label={t('menu')}
-      />
-      <Sidebar
-        visible={mobileVisible}
-        onHide={() => setMobileVisible(false)} 
-        className="lg:hidden"
-        fullScreen
-      >
-        {sidebarContent}
-      </Sidebar>
+
+      {mobileBottomNav}
+
       <div className="hidden lg:block w-64 h-screen border-r border-surface-border sticky top-0">
-        {sidebarContent}
+        {desktopSidebarContent}
       </div>
     </>
   );
