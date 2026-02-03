@@ -25,7 +25,42 @@
     }
   },
   "HomePage": {
-    "title": "Accueil"
+    "title": "Tableau de bord",
+    "overview": "Vue d'ensemble de votre flotte",
+    "seeAll": "Voir tout",
+    "sections": {
+      "stats": "Statistiques",
+      "alerts": "Alertes"
+    },
+    "cards": {
+      "totalVehicles": {
+        "title": "Total véhicules",
+        "loading": "chargement...",
+        "description": "{active} actifs sur {total} véhicules"
+      },
+      "alerts": {
+        "title": "Alertes",
+        "description": "alertes actives"
+      },
+      "mileage": {
+        "title": "Kilométrage",
+        "description": "En moyenne par véhicule par jour"
+      },
+      "availability": {
+        "title": "Disponibilité technique",
+        "description": "en moyenne"
+      }
+    },
+    "alerts": {
+      "loadingTitle": "Chargement",
+      "loadingDescription": "Récupération des alertes...",
+      "emptyTitle": "Aucune alerte",
+      "emptyDescription": "Aucune alerte active.",
+      "warningTitle": "Avertissement maintenance",
+      "criticalTitle": "Alerte maintenance",
+      "warningDescription": "{piece} : prévoir maintenance",
+      "criticalDescription": "{piece} : seuil critique atteint"
+    }
   },
   "SideBar": {
     "home": "Accueil",

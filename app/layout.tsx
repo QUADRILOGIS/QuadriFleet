@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PrimeReactProvider } from "primereact/api";
 import { Geist, Geist_Mono } from "next/font/google";
 import SideBar from "@/components/SideBar";
+import Image from "next/image";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -31,11 +32,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider>
-          <PrimeReactProvider>         
+          <PrimeReactProvider>
             <div className="flex">
-            <SideBar />
-              <main className="flex-1 lg:ml-0 w-full pb-20 lg:pb-0">{children}</main>
-            </div></PrimeReactProvider>
+              <SideBar />
+              <main className="relative flex-1 lg:ml-0 w-full pb-20 lg:pb-0">
+                <div className="lg:hidden absolute top-4 right-4 z-40">
+                  <Image src="/logo.svg" alt="Logo" width={40} height={20} />
+                </div>
+                {children}
+              </main>
+            </div>
+          </PrimeReactProvider>
         </NextIntlClientProvider>
       </body>
     </html>

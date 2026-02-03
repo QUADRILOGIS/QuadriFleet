@@ -25,7 +25,42 @@
     }
   },
   "HomePage": {
-    "title": "Home"
+    "title": "Dashboard",
+    "overview": "Overview of your fleet",
+    "seeAll": "See all",
+    "sections": {
+      "stats": "Statistics",
+      "alerts": "Alerts"
+    },
+    "cards": {
+      "totalVehicles": {
+        "title": "Total vehicles",
+        "loading": "loading...",
+        "description": "{active} active out of {total} vehicles"
+      },
+      "alerts": {
+        "title": "Alerts",
+        "description": "active alerts"
+      },
+      "mileage": {
+        "title": "Mileage",
+        "description": "Average per vehicle per day"
+      },
+      "availability": {
+        "title": "Technical availability",
+        "description": "on average"
+      }
+    },
+    "alerts": {
+      "loadingTitle": "Loading",
+      "loadingDescription": "Fetching alerts...",
+      "emptyTitle": "No alerts",
+      "emptyDescription": "No active alerts.",
+      "warningTitle": "Maintenance warning",
+      "criticalTitle": "Maintenance alert",
+      "warningDescription": "{piece}: schedule maintenance",
+      "criticalDescription": "{piece}: critical threshold reached"
+    }
   },
   "SideBar": {
     "home": "Home",
