@@ -67,6 +67,7 @@
     "stats": "Statistiques",
     "fleetManagement": "Gestion de flotte",
     "alerts": "Alertes",
+    "incidents": "Incidents",
     "settings": "Paramètres",
     "logoAlt": "Logo Quadrilogis",
     "menu": "Menu"
@@ -202,5 +203,12 @@
   },
   "AlertThresholds": {
     "thresholdLabel": "Seuil d'alerte"
+  },
+  "IncidentsPage": {
+    "title": "Gestion des incidents",
+    "incident": "Incident",
+    "activeCount": "{count} incidents en cours",
+    "loading": "Chargement des incidents...",
+    "empty": "Aucun incident en cours."
   }
 }

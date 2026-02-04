@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
-import { LayoutGrid, BarChart3, Bike, AlertTriangle, Settings, LucideIcon } from 'lucide-react';
+import {LayoutGrid, BarChart3, Bike, AlertTriangle, Settings, LucideIcon, AlertCircle} from 'lucide-react';
 
 interface MenuItem {
   label: string;
@@ -28,6 +28,7 @@ export default function SideBar() {
     { label: t('stats'), icon: BarChart3, path: '/stats' },
     { label: t('fleetManagement'), icon: Bike, path: '/fleet' },
     { label: t('alerts'), icon: AlertTriangle, path: '/alerts' },
+    { label: t('incidents'), icon: AlertCircle, path: '/incidents' },
     { label: t('settings'), icon: Settings, path: '/settings' },
   ];
 
