@@ -44,7 +44,7 @@
       },
       "mileage": {
         "title": "Kilométrage",
-        "description": "En moyenne par véhicule par jour"
+        "description": "en moyenne par véhicule par jour"
       },
       "availability": {
         "title": "Disponibilité technique",
@@ -61,6 +61,46 @@
       "warningDescription": "{piece} : prévoir maintenance",
       "criticalDescription": "{piece} : seuil critique atteint"
     }
+  },
+  "AlertsPage": {
+    "title": "Alertes",
+    "activeCount": "{count} alertes actives",
+    "tabs": {
+      "critical": "Critique",
+      "warning": "Modéré"
+    },
+    "actions": {
+      "selectAlerts": "Sélectionner des alertes",
+      "resolveSelection": "Résoudre la sélection",
+      "resolveAlert": "Résoudre alerte"
+    },
+    "states": {
+      "loading": "Chargement des alertes...",
+      "empty": "Aucune alerte active."
+    },
+    "timeframe": {
+      "today": "Aujourd'hui",
+      "daysAgo": "Il y a {days} jours"
+    }
+  },
+  "AlertCard": {
+    "title": {
+      "warning": "Avertissement",
+      "critical": "Alerte"
+    },
+    "severity": {
+      "warning": "Modéré",
+      "critical": "Critique"
+    },
+    "description": {
+      "warning": "{piece} usés à {percent}%.",
+      "critical": "{piece} usés à {percent}%."
+    }
+  },
+  "SortToggleButton": {
+    "more": "Plus",
+    "less": "Moins",
+    "recent": "récent"
   },
   "SideBar": {
     "home": "Accueil",

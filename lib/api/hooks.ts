@@ -138,12 +138,13 @@ interface UseAlertsReturn {
   alerts: Alert[];
   loading: boolean;
   error: Error | null;
+  refetch: () => Promise<void>;
 }
 
 /**
  * Hook pour récupérer toutes les alertes de tous les trailers
  */
-export function useAlerts(): UseAlertsReturn {
+export function useAlerts(onlyActive = false): UseAlertsReturn {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -169,7 +170,10 @@ export function useAlerts(): UseAlertsReturn {
           }
         }
         
-        setAlerts(allAlerts);
+        const nextAlerts = onlyActive
+          ? allAlerts.filter((alert) => alert.status !== "solved")
+          : allAlerts;
+        setAlerts(nextAlerts);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Unknown error'));
       } finally {
@@ -178,9 +182,38 @@ export function useAlerts(): UseAlertsReturn {
     };
 
     fetchAllAlerts();
-  }, [trailers]);
+  }, [trailers, onlyActive]);
 
-  return { alerts, loading, error };
+  const refetch = async () => {
+    if (trailers.length === 0) return;
+    try {
+      setLoading(true);
+      setError(null);
+      const allAlerts: Alert[] = [];
+
+      for (const trailer of trailers) {
+        try {
+          const { alerts } = await getTrailerAlertsAndIncidents(trailer.id);
+          if (alerts) {
+            allAlerts.push(...alerts);
+          }
+        } catch {
+          // Continue with other trailers
+        }
+      }
+
+      const nextAlerts = onlyActive
+        ? allAlerts.filter((alert) => alert.status !== "solved")
+        : allAlerts;
+      setAlerts(nextAlerts);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error("Unknown error"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { alerts, loading, error, refetch };
 }
 
 interface UseIncidentsReturn {

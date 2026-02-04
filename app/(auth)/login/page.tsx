@@ -18,9 +18,7 @@ export default function Page() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (
-    event: React.SyntheticEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
     setLoading(true);
@@ -43,7 +41,7 @@ export default function Page() {
         document.cookie = `auth_token=${data.data.token}; path=/; max-age=86400`;
         router.push("/");
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError(t("errors.loginFailed"));
     } finally {
@@ -52,8 +50,8 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen p-6">
-      <div className="flex justify-end">
+    <main className="max-h-[calc(100dvh-80px)] md:max-h-screen overflow-hidden p-6">
+      <div className="flex">
         <LocaleSwitcher />
       </div>
       <section className="mx-auto flex min-h-screen max-w-md items-center">
@@ -94,9 +92,7 @@ export default function Page() {
               />
             </div>
 
-            {error ? (
-              <p className="text-sm normal-case">{error}</p>
-            ) : null}
+            {error ? <p className="text-sm normal-case">{error}</p> : null}
 
             <div className="flex flex-wrap items-center justify-between gap-4 text-sm normal-case">
               <Link href="#" className="transition">

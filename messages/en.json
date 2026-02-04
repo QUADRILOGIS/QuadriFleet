@@ -44,7 +44,7 @@
       },
       "mileage": {
         "title": "Mileage",
-        "description": "Average per vehicle per day"
+        "description": "average per vehicle per day"
       },
       "availability": {
         "title": "Technical availability",
@@ -61,6 +61,46 @@
       "warningDescription": "{piece}: schedule maintenance",
       "criticalDescription": "{piece}: critical threshold reached"
     }
+  },
+  "AlertsPage": {
+    "title": "Alerts",
+    "activeCount": "{count} active alerts",
+    "tabs": {
+      "critical": "Critical",
+      "warning": "Warning"
+    },
+    "actions": {
+      "selectAlerts": "Select alerts",
+      "resolveSelection": "Resolve selection",
+      "resolveAlert": "Resolve alert"
+    },
+    "states": {
+      "loading": "Loading alerts...",
+      "empty": "No active alerts."
+    },
+    "timeframe": {
+      "today": "Today",
+      "daysAgo": "{days} days ago"
+    }
+  },
+  "AlertCard": {
+    "title": {
+      "warning": "Warning",
+      "critical": "Alert"
+    },
+    "severity": {
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "description": {
+      "warning": "{piece} worn at {percent}%.",
+      "critical": "{piece} worn at {percent}%."
+    }
+  },
+  "SortToggleButton": {
+    "more": "More",
+    "less": "Less",
+    "recent": "recent"
   },
   "SideBar": {
     "home": "Home",
