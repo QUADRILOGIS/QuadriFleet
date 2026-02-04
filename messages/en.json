@@ -238,5 +238,58 @@
   },
   "AlertThresholds": {
     "thresholdLabel": "Alert threshold"
+  },
+  "StatsPage": {
+    "title": "Statistics",
+    "subtitle": "Fleet analysis",
+    "loading": "Loading statistics...",
+    "sections": {
+      "globalAverage": "Global average",
+      "vehicleAverage": "Average per vehicle"
+    },
+    "cards": {
+      "totalVehicles": "Total vehicles",
+      "activeVehicles": "{active} active out of {total} vehicles",
+      "alerts": "Alerts",
+      "activeAlerts": "active alerts",
+      "avgKilometers": "Average mileage",
+      "ofVehicles": "of vehicles",
+      "dailyIncidents": "Daily incident count",
+      "incidentsAvgDesc": "average incidents per day for the fleet",
+      "dailyKilometers": "Daily mileage",
+      "avgPerVehiclePerDay": "Average per vehicle each day",
+      "dailyUsageTime": "Daily usage time",
+      "incidentsCount": "Incident count",
+      "perDay": "per day",
+      "avgPerVehicle": "average per vehicle",
+      "perVehiclePerDay": "per vehicle per day"
+    },
+    "charts": {
+      "incidentsPerDay": "Incidents per day",
+      "dailyKm": "Daily km",
+      "usageMinutes": "Usage minutes",
+      "incidentsPerVehicle": "Incidents per vehicle",
+      "kilometers": "Kilometers",
+      "usage": "Usage",
+      "incidents": "Incidents",
+      "dailyKmPerVehicle": "Daily mileage per vehicle",
+      "usagePerVehicle": "Usage time per vehicle (minutes)"
+    },
+    "dataTypes": {
+      "kilometers": "Kilometers",
+      "incidents": "Number of incidents",
+      "availability": "Technical availability"
+    },
+    "timeFrames": {
+      "hourly": "Hourly",
+      "daily": "Daily",
+      "weekly": "Weekly"
+    },
+    "builder": {
+      "display": "Display:",
+      "basedOn": "Based on:",
+      "selectData": "Select data",
+      "addChart": "Add a graph"
+    }
   }
 }

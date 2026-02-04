@@ -242,5 +242,58 @@
   },
   "AlertThresholds": {
     "thresholdLabel": "Seuil d'alerte"
+  },
+  "StatsPage": {
+    "title": "Statistiques",
+    "subtitle": "Analyse de votre flotte",
+    "loading": "Chargement des statistiques...",
+    "sections": {
+      "globalAverage": "Moyenne globale",
+      "vehicleAverage": "Moyenne par véhicule"
+    },
+    "cards": {
+      "totalVehicles": "Total véhicules",
+      "activeVehicles": "{active} actifs sur {total} véhicules",
+      "alerts": "Alertes",
+      "activeAlerts": "alertes actives",
+      "avgKilometers": "Kilométrage moyen",
+      "ofVehicles": "des véhicules",
+      "dailyIncidents": "Nombre d'incidents journalier",
+      "incidentsAvgDesc": "incidents en moyenne par jour pour la flotte",
+      "dailyKilometers": "Kilométrage journalier",
+      "avgPerVehiclePerDay": "En moyenne par véhicule chaque jour",
+      "dailyUsageTime": "Temps d'utilisation journalier",
+      "incidentsCount": "Nombre d'incidents",
+      "perDay": "par jour",
+      "avgPerVehicle": "en moyenne par véhicule",
+      "perVehiclePerDay": "par véhicule par jour"
+    },
+    "charts": {
+      "incidentsPerDay": "Nombre d'incidents en fonction des jours",
+      "dailyKm": "Km journalier",
+      "usageMinutes": "Minutes d'utilisation",
+      "incidentsPerVehicle": "Incidents par véhicule",
+      "kilometers": "Kilomètres",
+      "usage": "Utilisation",
+      "incidents": "Incidents",
+      "dailyKmPerVehicle": "Kilométrage journalier par véhicule",
+      "usagePerVehicle": "Temps d'utilisation par véhicule (minutes)"
+    },
+    "dataTypes": {
+      "kilometers": "Nombre de km",
+      "incidents": "Nombre d'incidents",
+      "availability": "Disponibilité technique"
+    },
+    "timeFrames": {
+      "hourly": "Par heure",
+      "daily": "Par jour",
+      "weekly": "Par semaine"
+    },
+    "builder": {
+      "display": "Afficher :",
+      "basedOn": "En fonction de :",
+      "selectData": "Sélectionner les données",
+      "addChart": "Ajouter un graph"
+    }
   }
 }

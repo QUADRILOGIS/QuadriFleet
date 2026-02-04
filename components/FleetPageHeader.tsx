@@ -13,7 +13,7 @@ export default function FleetPageHeader({ title, vehicleCount, activeCount }: Fl
       <div>
         <h1 className="text-xl md:text-2xl font-semibold mb-1">{title}</h1>
         {(vehicleCount !== undefined || activeCount !== undefined) && (
-          <p className="text-sm text-gray-500">
+           <p className="text-gray-400">
             {vehicleCount !== undefined && `${vehicleCount} ${t('vehiclesCount')}`}
             {vehicleCount !== undefined && activeCount !== undefined && ` ${t('ofWhich')} `}
             {activeCount !== undefined && `${activeCount} ${t('activeCount')}`}
