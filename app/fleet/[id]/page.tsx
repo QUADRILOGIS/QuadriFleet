@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
-import { ArrowLeft, MapPin, Map as MapIcon, Zap, Percent, Clock } from "lucide-react";
+import { ArrowLeft, MapPin, Map as MapIcon, Zap, Battery, Clock } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useTrailerDetails } from "@/lib/api";
 import { reverseGeocode } from "@/lib/geocoding";
@@ -12,6 +12,7 @@ import {
   sortAlerts,
   sortIncidents,
   getBatteryTextColor,
+  getBatteryHexColor,
   getStatusStyle,
   formatDate,
   calculateAge,
@@ -146,7 +147,7 @@ export default function TrailerDetailPage() {
                   <p className="text-sm text-gray-500">{t("dailyEnergy")}</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <Percent size={32} className="text-green-500 mx-auto mb-2" />
+                  <Battery size={32} color={getBatteryHexColor(trailer.battery_level || 0)} className="mx-auto mb-2" />
                   <p className={`text-2xl font-bold ${getBatteryTextColor(trailer.battery_level || 0)}`}>
                     {(trailer.battery_level || 0).toFixed(0)  }%
                   </p>

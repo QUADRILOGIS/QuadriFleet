@@ -73,13 +73,13 @@ export default function Page() {
   return (
     <main className="p-6">
       <div className="flex flex-col gap-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <h1 className="text-3xl font-semibold uppercase tracking-wide">
             {t("title")}
           </h1>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 border border-red-500 rounded-lg text-red-600 hover:bg-red-50 transition-colors w-fit"
           >
             <LogOut size={18} />
             <span>{t("signOut")}</span>
