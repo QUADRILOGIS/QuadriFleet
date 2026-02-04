@@ -1,4 +1,8 @@
 {
+  "MetaData": {
+    "title": "QuadriFleet",
+    "description": "Manage your vehicle fleet. Track performance, monitor alerts and optimize maintenance for more efficient logistics."
+  },
   "LoginPage": {
     "title": "Sign in",
     "email": "Email address",

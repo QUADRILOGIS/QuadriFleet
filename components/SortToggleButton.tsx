@@ -19,11 +19,13 @@ export default function SortToggleButton({
   return (
     <button
       type="button"
-      className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-gray-300 px-1.5 py-0.5 text-[9px] text-gray-600"
+      className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-gray-400 px-1.5 py-0.5 text-[9px] text-gray-600"
       onClick={onToggle}
     >
-      {leftLabel} <ArrowRight />
-      {rightLabel} {t("recent")}
+      <span className={`flex items-center justify-center gap-1`}>
+        {leftLabel} <ArrowRight size={12} />
+        {rightLabel} {t("recent")}
+      </span>
     </button>
   );
 }

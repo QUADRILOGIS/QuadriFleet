@@ -1,4 +1,8 @@
 {
+  "MetaData": {
+    "title": "QuadriFleet",
+    "description": "Gestion de votre flotte de véhicules. Suivez les performances, surveillez les alertes et optimisez la maintenance pour une logistique plus efficace."
+  },
   "LoginPage": {
     "title": "Connexion",
     "email": "Adresse e-mail",
