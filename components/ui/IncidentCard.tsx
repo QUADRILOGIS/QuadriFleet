@@ -9,8 +9,9 @@ export default function IncidentCard({incident}: { incident: Incident }) {
     const serial = `QU-${incident.trailer_id.toString().padStart(3, "0")}-IS`;
 
     return (
-        <div className="flex justify-between border border-gray-200 rounded-xl p-4 ">
-            <div className="flex flex-col gap-2">
+        <div className="flex justify-between border border-gray-200 rounded-xl p-4
+                w-full md:w-[48%] lg:w-[32%]">
+        <div className="flex flex-col gap-2">
                 <div className="flex flex-col">
                     <div className="flex items-center gap-2">
                         <span className="font-semibold text-lg">{t("incident")}</span>

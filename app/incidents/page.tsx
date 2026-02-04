@@ -1,9 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { useIncidents } from "@/lib/api";
-import { ArrowDownUp } from "lucide-react";
-import { useState } from "react";
+import {useTranslations} from "next-intl";
+import {useIncidents} from "@/lib/api";
+import {useState} from "react";
 import IncidentCard from "@/components/ui/IncidentCard";
 
 export default function IncidentsPage() {
@@ -42,14 +41,13 @@ export default function IncidentsPage() {
                 */}
             </div>
 
-            {/* Content */}
-            <div className="mt-6 space-y-4">
-                {loading ? (
-                    <div className="text-center text-gray-500 py-12">
+            <div className="mt-6 flex flex-col gap-4 md:flex-row md:flex-wrap">
+            {loading ? (
+                    <div className="text-center text-gray-400 py-12">
                         {t("loading")}
                     </div>
                 ) : sortedIncidents.length === 0 ? (
-                    <div className="text-center text-gray-500 py-12">
+                    <div className="text-center text-gray-400 py-12">
                         {t("empty")}
                     </div>
                 ) : (

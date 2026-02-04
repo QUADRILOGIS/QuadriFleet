@@ -291,13 +291,13 @@
       "basedOn": "Based on:",
       "selectData": "Select data",
       "addChart": "Add a graph"
-    },
-    "IncidentsPage": {
-      "title": "Incident Management",
-      "incident": "Incident",
-      "activeCount": "{count} active incidents",
-      "loading": "Loading incidents...",
-      "empty": "No incident active."
     }
+  },
+  "IncidentsPage": {
+    "title": "Incident Management",
+    "incident": "Incident",
+    "activeCount": "{count} active incidents",
+    "loading": "Loading incidents...",
+    "empty": "No incident active."
   }
 }
