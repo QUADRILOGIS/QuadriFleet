@@ -3,9 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
-import { Tag } from "primereact/tag";
-import { ProgressBar } from "primereact/progressbar";
-import { Button } from "primereact/button";
+import { ArrowLeft, MapPin, Map as MapIcon, Zap, Percent, Clock } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useTrailerDetails } from "@/lib/api";
 import { reverseGeocode } from "@/lib/geocoding";
@@ -92,35 +90,28 @@ export default function TrailerDetailPage() {
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
           <div className="flex items-center gap-4">
-            <Button
-              icon="pi pi-arrow-left"
-              rounded
-              text
+            <button
               onClick={() => router.back()}
-              className="p-button-secondary"
-            />
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              aria-label="Retour"
+            >
+              <ArrowLeft size={20} className="text-gray-600" />
+            </button>
             <div>
               <div className="flex items-center gap-3">
                 <h1 className="text-2xl font-semibold">{trailer.serial_number}</h1>
-                <Tag value={getStatusLabel(status)} style={getStatusStyle(status)} className="text-xs" />
+                <span 
+                  className="px-3 py-1 rounded-full text-xs font-medium"
+                  style={getStatusStyle(status)}
+                >
+                  {getStatusLabel(status)}
+                </span>
               </div>
               <p className="text-sm text-gray-600 flex items-center gap-2 mt-1">
-                <i className="pi pi-map-marker" />
+                <MapPin size={16} />
                 {address || "Chargement..."}
               </p>
             </div>
-          </div>
-          <div className="flex gap-2">
-            <Button
-              label={`${alerts.length} ${t("alerts")}`}
-              icon="pi pi-exclamation-triangle"
-              outlined
-            />
-            <Button
-              label={`${recent_incidents.length} ${t("incidents")}`}
-              icon="pi pi-times-circle"
-              outlined
-            />
           </div>
         </div>
 
@@ -145,24 +136,24 @@ export default function TrailerDetailPage() {
               <h2 className="text-lg font-semibold mb-4">{t("dailyStats")}</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <i className="pi pi-map text-2xl text-blue-500 mb-2" />
+                  <MapIcon size={32} className="text-blue-500 mx-auto mb-2" />
                   <p className="text-2xl font-bold">{trailer.daily_km_traveled} km</p>
                   <p className="text-sm text-gray-500">{t("dailyKm")}</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <i className="pi pi-bolt text-2xl text-yellow-500 mb-2" />
+                  <Zap size={32} className="text-yellow-500 mx-auto mb-2" />
                   <p className="text-2xl font-bold">{trailer.daily_energy_consumption} kWh</p>
                   <p className="text-sm text-gray-500">{t("dailyEnergy")}</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <i className="pi pi-percentage text-2xl text-green-500 mb-2" />
+                  <Percent size={32} className="text-green-500 mx-auto mb-2" />
                   <p className={`text-2xl font-bold ${getBatteryTextColor(trailer.battery_level || 0)}`}>
                     {(trailer.battery_level || 0).toFixed(0)  }%
                   </p>
                   <p className="text-sm text-gray-500">{t("battery")}</p>
                 </div>
                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <i className="pi pi-clock text-2xl text-purple-500 mb-2" />
+                  <Clock size={32} className="text-purple-500 mx-auto mb-2" />
                   <p className="text-2xl font-bold">{trailer.downtime}h</p>
                   <p className="text-sm text-gray-500">{t("downtime")}</p>
                 </div>
@@ -172,11 +163,12 @@ export default function TrailerDetailPage() {
                   <span>{t("autonomy")}</span>
                   <span>{trailer.daily_km_traveled}/{trailer.autonomy} km</span>
                 </div>
-                <ProgressBar
-                  value={(trailer.daily_km_traveled / trailer.autonomy) * 100}
-                  showValue={false}
-                  style={{ height: "8px" }}
-                />
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-blue-500 h-2 rounded-full transition-all"
+                    style={{ width: `${Math.min((trailer.daily_km_traveled / trailer.autonomy) * 100, 100)}%` }}
+                  />
+                </div>
               </div>
             </div>
 
@@ -224,7 +216,9 @@ export default function TrailerDetailPage() {
                           <td className="text-right py-3 px-3">{perf.distance} km</td>
                           <td className="text-right py-3 px-3">{perf.energy} kWh</td>
                           <td className="text-right py-3 px-3">
-                            <Tag value={perf.deliveries} severity="success" />
+                            <span className="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs rounded font-medium">
+                              {perf.deliveries}
+                            </span>
                           </td>
                         </tr>
                       ))}

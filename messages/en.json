@@ -173,6 +173,12 @@
     "languageLabel": "Language",
     "maintenanceTitle": "Trailer maintenance alerts",
     "maintenanceDescription": "Define the mileage that triggers an alert for each component.",
+    "loading": "Loading parts...",
+    "error": "Error loading parts",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "saveError": "Error saving",
+    "warningPercent": "Warning threshold",
     "parts": {
       "tires": "Tires",
       "brakes": "Brakes",
@@ -180,7 +186,14 @@
       "axles": "Axles",
       "battery": "Battery",
       "lubrication": "Lubrication",
-      "engine": "Engine"
+      "engine": "Engine",
+      "Batterie": "Battery",
+      "Batterie Frigo": "Fridge Battery",
+      "Capteur de pression": "Pressure Sensor",
+      "Moteur": "Engine",
+      "Plaquettes de frein": "Brake Pads",
+      "Pneu Essieu A": "Axle A Tire",
+      "Vérin Hydraulique": "Hydraulic Cylinder"
     }
   },
   "AlertThresholds": {

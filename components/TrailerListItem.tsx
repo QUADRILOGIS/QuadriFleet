@@ -1,4 +1,3 @@
-import { Tag } from "primereact/tag";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -12,6 +11,20 @@ import {
   getStatusSeverity,
 } from "@/utils";
 import type { ApiTrailer } from "@/types";
+
+const Badge = ({ value, severity }: { value: string; severity: string }) => {
+  const colors = {
+    danger: 'bg-red-100 text-red-700',
+    warning: 'bg-orange-100 text-orange-700',
+    success: 'bg-green-100 text-green-700',
+    info: 'bg-blue-100 text-blue-700',
+  };
+  return (
+    <span className={`inline-block px-2 py-1 text-xs rounded font-medium ${colors[severity as keyof typeof colors] || colors.info}`}>
+      {value}
+    </span>
+  );
+};
 
 type TrailerListItemProps = {
   trailer: ApiTrailer;
@@ -67,10 +80,9 @@ export default function TrailerListItem({ trailer }: TrailerListItemProps) {
             </div>
           </div>
           
-          <Tag 
+          <Badge 
             value={getStatusLabel(status)} 
             severity={getStatusSeverity(status)} 
-            className="text-xs px-3 py-1 rounded-full flex-shrink-0"
           />
         </div>
 

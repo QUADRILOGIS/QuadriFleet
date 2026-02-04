@@ -11,7 +11,6 @@ interface MenuItem {
   label: string;
   icon: LucideIcon;
   path: string;
-  mobileOnly: boolean;
 }
 
 export default function SideBar() {
@@ -25,14 +24,12 @@ export default function SideBar() {
   }
 
   const menuItems: MenuItem[] = [
-    { label: t('home'), icon: LayoutGrid, path: '/', mobileOnly: false },
-    { label: t('stats'), icon: BarChart3, path: '/stats', mobileOnly: true },
-    { label: t('fleetManagement'), icon: Bike, path: '/fleet', mobileOnly: false },
-    { label: t('alerts'), icon: AlertTriangle, path: '/alerts', mobileOnly: false },
-    { label: t('settings'), icon: Settings, path: '/settings', mobileOnly: false },
+    { label: t('home'), icon: LayoutGrid, path: '/' },
+    { label: t('stats'), icon: BarChart3, path: '/stats' },
+    { label: t('fleetManagement'), icon: Bike, path: '/fleet' },
+    { label: t('alerts'), icon: AlertTriangle, path: '/alerts' },
+    { label: t('settings'), icon: Settings, path: '/settings' },
   ];
-
-  const desktopMenuItems = menuItems.filter(item => !item.mobileOnly);
 
   // Desktop Sidebar Content
   const desktopSidebarContent = (
@@ -51,7 +48,7 @@ export default function SideBar() {
 
       {/* Navigation */}
       <nav className="flex flex-col gap-2">
-        {desktopMenuItems.map((item) => {
+        {menuItems.map((item) => {
           const IconComponent = item.icon;
           return (
             <Link
@@ -111,8 +108,7 @@ export default function SideBar() {
     <>
 
       {mobileBottomNav}
-
-      <div className="hidden lg:block w-64 h-screen border-r border-surface-border sticky top-0">
+      <div className="hidden lg:block w-64 h-screen border-r border-gray-200 sticky top-0">
         {desktopSidebarContent}
       </div>
     </>

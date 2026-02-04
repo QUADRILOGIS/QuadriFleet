@@ -1,86 +1,71 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import AlertThresholds, {
-  type AlertThresholdItem,
-} from "@/components/AlertThresholds";
-import { Button } from "primereact/button";
+import AlertThresholds from "@/components/AlertThresholds";
 import { Divider } from "primereact/divider";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
-import { apiClient } from "@/lib/api/client";
+import { apiClient, fetchPieces, updatePiece as updatePieceApi, type Piece } from "@/lib/api";
+import { LogOut, Loader2 } from "lucide-react";
 
 export default function Page() {
   const t = useTranslations("SettingsPage");
   const router = useRouter();
+  
+  const [pieces, setPieces] = useState<Piece[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [savingId, setSavingId] = useState<number | null>(null);
 
-  const alertConfig: AlertThresholdItem[] = [
-    {
-      key: "tires",
-      label: t("parts.tires"),
-      min: 20000,
-      max: 100000,
-      step: 1000,
-      value: 50000,
-    },
-    {
-      key: "brakes",
-      label: t("parts.brakes"),
-      min: 10000,
-      max: 40000,
-      step: 500,
-      value: 20000,
-    },
-    {
-      key: "suspension",
-      label: t("parts.suspension"),
-      min: 10000,
-      max: 60000,
-      step: 1000,
-      value: 30000,
-    },
-    {
-      key: "axles",
-      label: t("parts.axles"),
-      min: 15000,
-      max: 80000,
-      step: 1000,
-      value: 40000,
-    },
-    {
-      key: "battery",
-      label: t("parts.battery"),
-      min: 10000,
-      max: 50000,
-      step: 1000,
-      value: 25000,
-    },
-    {
-      key: "lubrication",
-      label: t("parts.lubrication"),
-      min: 100,
-      max: 2000,
-      step: 100,
-      value: 500,
-    },
-    {
-      key: "engine",
-      label: t("parts.engine"),
-      min: 20000,
-      max: 80000,
-      step: 1000,
-      value: 30000,
-    },
-  ];
+  useEffect(() => {
+    const loadPieces = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchPieces();
+        setPieces(data);
+      } catch (err) {
+        setError(t("error"));
+        console.error("Failed to fetch pieces:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadPieces();
+  }, [t]);
 
-  const [alertValues, setAlertValues] = useState<Record<string, number>>(() =>
-    Object.fromEntries(alertConfig.map(({ key, value }) => [key, value])),
-  );
+  const updatePiece = useCallback(async (id: number, trigger_limit: number, warning_percent: number) => {
+    const piece = pieces.find(p => p.id === id);
+    if (!piece) return;
+    
+    setSavingId(id);
+    try {
+      await updatePieceApi(id, {
+        name: piece.name,
+        trigger_limit,
+        warning_percent,
+      });
+      
+      setPieces(prev => prev.map(p => 
+        p.id === id ? { ...p, trigger_limit, warning_percent } : p
+      ));
+    } catch (err) {
+      console.error("Failed to update piece:", err);
+    } finally {
+      setSavingId(null);
+    }
+  }, [pieces]);
+
+  const getPartLabel = (name: string): string => {
+    try {
+      return t(`parts.${name}`);
+    } catch {
+      return name;
+    }
+  };
 
   const handleLogout = async () => {
     await apiClient.post("/api/auth/logout");
-
     document.cookie = "auth_token=; path=/; max-age=0";
     router.push("/login");
   };
@@ -92,13 +77,13 @@ export default function Page() {
           <h1 className="text-3xl font-semibold uppercase tracking-wide">
             {t("title")}
           </h1>
-          <Button
-            label={t("signOut")}
-            icon="pi pi-sign-out"
-            severity="secondary"
-            outlined
+          <button
             onClick={handleLogout}
-          />
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            <LogOut size={18} />
+            <span>{t("signOut")}</span>
+          </button>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -119,11 +104,22 @@ export default function Page() {
               {t("maintenanceDescription")}
             </p>
           </div>
-          <AlertThresholds
-            items={alertConfig}
-            values={alertValues}
-            onChange={(nextValues) => setAlertValues(nextValues)}
-          />
+          
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
+              <span className="ml-2 text-gray-500">{t("loading")}</span>
+            </div>
+          ) : error ? (
+            <div className="text-center py-12 text-red-500">{error}</div>
+          ) : (
+            <AlertThresholds
+              pieces={pieces}
+              getPartLabel={getPartLabel}
+              onUpdate={updatePiece}
+              savingId={savingId}
+            />
+          )}
         </section>
       </div>
     </main>

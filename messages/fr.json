@@ -177,6 +177,12 @@
     "languageLabel": "Langue",
     "maintenanceTitle": "Alertes maintenance remorques",
     "maintenanceDescription": "Définissez le kilométrage qui déclenche une alerte pour chaque composant.",
+    "loading": "Chargement des pièces...",
+    "error": "Erreur lors du chargement des pièces",
+    "saving": "Enregistrement...",
+    "saved": "Enregistré",
+    "saveError": "Erreur lors de l'enregistrement",
+    "warningPercent": "Seuil d'avertissement",
     "parts": {
       "tires": "Pneus",
       "brakes": "Freins",
@@ -184,7 +190,14 @@
       "axles": "Essieux",
       "battery": "Batterie",
       "lubrication": "Graissage",
-      "engine": "Moteur"
+      "engine": "Moteur",
+      "Batterie": "Batterie",
+      "Batterie Frigo": "Batterie Frigo",
+      "Capteur de pression": "Capteur de pression",
+      "Moteur": "Moteur",
+      "Plaquettes de frein": "Plaquettes de frein",
+      "Pneu Essieu A": "Pneu Essieu A",
+      "Vérin Hydraulique": "Vérin Hydraulique"
     }
   },
   "AlertThresholds": {
