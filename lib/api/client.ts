@@ -93,6 +93,24 @@ class ApiClient {
     return response.json();
   }
 
+  async patch<T>(endpoint: string, data?: unknown, options?: RequestOptions): Promise<T> {
+    const { params, ...fetchOptions } = options || {};
+    const url = this.buildUrl(endpoint, params);
+
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: this.buildHeaders(fetchOptions.headers),
+      body: data ? JSON.stringify(data) : undefined,
+      ...fetchOptions,
+    });
+
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
   async delete<T>(endpoint: string, options?: RequestOptions): Promise<T> {
     const { params, ...fetchOptions } = options || {};
     const url = this.buildUrl(endpoint, params);

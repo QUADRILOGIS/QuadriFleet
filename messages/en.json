@@ -44,7 +44,7 @@
       },
       "mileage": {
         "title": "Mileage",
-        "description": "Average per vehicle per day"
+        "description": "average per vehicle per day"
       },
       "availability": {
         "title": "Technical availability",
@@ -61,6 +61,46 @@
       "warningDescription": "{piece}: schedule maintenance",
       "criticalDescription": "{piece}: critical threshold reached"
     }
+  },
+  "AlertsPage": {
+    "title": "Alerts",
+    "activeCount": "{count} active alerts",
+    "tabs": {
+      "critical": "Critical",
+      "warning": "Warning"
+    },
+    "actions": {
+      "selectAlerts": "Select alerts",
+      "resolveSelection": "Resolve selection",
+      "resolveAlert": "Resolve alert"
+    },
+    "states": {
+      "loading": "Loading alerts...",
+      "empty": "No active alerts."
+    },
+    "timeframe": {
+      "today": "Today",
+      "daysAgo": "{days} days ago"
+    }
+  },
+  "AlertCard": {
+    "title": {
+      "warning": "Warning",
+      "critical": "Alert"
+    },
+    "severity": {
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "description": {
+      "warning": "{piece} worn at {percent}%.",
+      "critical": "{piece} worn at {percent}%."
+    }
+  },
+  "SortToggleButton": {
+    "more": "More",
+    "less": "Less",
+    "recent": "recent"
   },
   "SideBar": {
     "home": "Home",
@@ -200,11 +240,63 @@
   "AlertThresholds": {
     "thresholdLabel": "Alert threshold"
   },
-  "IncidentsPage": {
-    "title": "Incident Management",
-    "incident": "Incident",
-    "activeCount": "{count} active incidents",
-    "loading": "Loading incidents...",
-    "empty": "No incident active."
-  }
+  "StatsPage": {
+    "title": "Statistics",
+    "subtitle": "Fleet analysis",
+    "loading": "Loading statistics...",
+    "sections": {
+      "globalAverage": "Global average",
+      "vehicleAverage": "Average per vehicle"
+    },
+    "cards": {
+      "totalVehicles": "Total vehicles",
+      "activeVehicles": "{active} active out of {total} vehicles",
+      "alerts": "Alerts",
+      "activeAlerts": "active alerts",
+      "avgKilometers": "Average mileage",
+      "ofVehicles": "of vehicles",
+      "dailyIncidents": "Daily incident count",
+      "incidentsAvgDesc": "average incidents per day for the fleet",
+      "dailyKilometers": "Daily mileage",
+      "avgPerVehiclePerDay": "Average per vehicle each day",
+      "dailyUsageTime": "Daily usage time",
+      "incidentsCount": "Incident count",
+      "perDay": "per day",
+      "avgPerVehicle": "average per vehicle",
+      "perVehiclePerDay": "per vehicle per day"
+    },
+    "charts": {
+      "incidentsPerDay": "Incidents per day",
+      "dailyKm": "Daily km",
+      "usageMinutes": "Usage minutes",
+      "incidentsPerVehicle": "Incidents per vehicle",
+      "kilometers": "Kilometers",
+      "usage": "Usage",
+      "incidents": "Incidents",
+      "dailyKmPerVehicle": "Daily mileage per vehicle",
+      "usagePerVehicle": "Usage time per vehicle (minutes)"
+    },
+    "dataTypes": {
+      "kilometers": "Kilometers",
+      "incidents": "Number of incidents",
+      "availability": "Technical availability"
+    },
+    "timeFrames": {
+      "hourly": "Hourly",
+      "daily": "Daily",
+      "weekly": "Weekly"
+    },
+    "builder": {
+      "display": "Display:",
+      "basedOn": "Based on:",
+      "selectData": "Select data",
+      "addChart": "Add a graph"
+    },
+    "IncidentsPage": {
+      "title": "Incident Management",
+      "incident": "Incident",
+      "activeCount": "{count} active incidents",
+      "loading": "Loading incidents...",
+      "empty": "No incident active."
+    }
 }

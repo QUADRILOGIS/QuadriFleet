@@ -44,7 +44,7 @@
       },
       "mileage": {
         "title": "Kilométrage",
-        "description": "En moyenne par véhicule par jour"
+        "description": "en moyenne par véhicule par jour"
       },
       "availability": {
         "title": "Disponibilité technique",
@@ -61,6 +61,46 @@
       "warningDescription": "{piece} : prévoir maintenance",
       "criticalDescription": "{piece} : seuil critique atteint"
     }
+  },
+  "AlertsPage": {
+    "title": "Alertes",
+    "activeCount": "{count} alertes actives",
+    "tabs": {
+      "critical": "Critique",
+      "warning": "Modéré"
+    },
+    "actions": {
+      "selectAlerts": "Sélectionner des alertes",
+      "resolveSelection": "Résoudre la sélection",
+      "resolveAlert": "Résoudre alerte"
+    },
+    "states": {
+      "loading": "Chargement des alertes...",
+      "empty": "Aucune alerte active."
+    },
+    "timeframe": {
+      "today": "Aujourd'hui",
+      "daysAgo": "Il y a {days} jours"
+    }
+  },
+  "AlertCard": {
+    "title": {
+      "warning": "Avertissement",
+      "critical": "Alerte"
+    },
+    "severity": {
+      "warning": "Modéré",
+      "critical": "Critique"
+    },
+    "description": {
+      "warning": "{piece} usés à {percent}%.",
+      "critical": "{piece} usés à {percent}%."
+    }
+  },
+  "SortToggleButton": {
+    "more": "Plus",
+    "less": "Moins",
+    "recent": "récent"
   },
   "SideBar": {
     "home": "Accueil",
@@ -204,11 +244,63 @@
   "AlertThresholds": {
     "thresholdLabel": "Seuil d'alerte"
   },
-  "IncidentsPage": {
-    "title": "Gestion des incidents",
-    "incident": "Incident",
-    "activeCount": "{count} incidents en cours",
-    "loading": "Chargement des incidents...",
-    "empty": "Aucun incident en cours."
-  }
+  "StatsPage": {
+    "title": "Statistiques",
+    "subtitle": "Analyse de votre flotte",
+    "loading": "Chargement des statistiques...",
+    "sections": {
+      "globalAverage": "Moyenne globale",
+      "vehicleAverage": "Moyenne par véhicule"
+    },
+    "cards": {
+      "totalVehicles": "Total véhicules",
+      "activeVehicles": "{active} actifs sur {total} véhicules",
+      "alerts": "Alertes",
+      "activeAlerts": "alertes actives",
+      "avgKilometers": "Kilométrage moyen",
+      "ofVehicles": "des véhicules",
+      "dailyIncidents": "Nombre d'incidents journalier",
+      "incidentsAvgDesc": "incidents en moyenne par jour pour la flotte",
+      "dailyKilometers": "Kilométrage journalier",
+      "avgPerVehiclePerDay": "En moyenne par véhicule chaque jour",
+      "dailyUsageTime": "Temps d'utilisation journalier",
+      "incidentsCount": "Nombre d'incidents",
+      "perDay": "par jour",
+      "avgPerVehicle": "en moyenne par véhicule",
+      "perVehiclePerDay": "par véhicule par jour"
+    },
+    "charts": {
+      "incidentsPerDay": "Nombre d'incidents en fonction des jours",
+      "dailyKm": "Km journalier",
+      "usageMinutes": "Minutes d'utilisation",
+      "incidentsPerVehicle": "Incidents par véhicule",
+      "kilometers": "Kilomètres",
+      "usage": "Utilisation",
+      "incidents": "Incidents",
+      "dailyKmPerVehicle": "Kilométrage journalier par véhicule",
+      "usagePerVehicle": "Temps d'utilisation par véhicule (minutes)"
+    },
+    "dataTypes": {
+      "kilometers": "Nombre de km",
+      "incidents": "Nombre d'incidents",
+      "availability": "Disponibilité technique"
+    },
+    "timeFrames": {
+      "hourly": "Par heure",
+      "daily": "Par jour",
+      "weekly": "Par semaine"
+    },
+    "builder": {
+      "display": "Afficher :",
+      "basedOn": "En fonction de :",
+      "selectData": "Sélectionner les données",
+      "addChart": "Ajouter un graph"
+    },
+    "IncidentsPage": {
+      "title": "Gestion des incidents",
+      "incident": "Incident",
+      "activeCount": "{count} incidents en cours",
+      "loading": "Chargement des incidents...",
+      "empty": "Aucun incident en cours."
+    }
 }

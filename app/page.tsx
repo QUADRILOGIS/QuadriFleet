@@ -4,7 +4,7 @@ import { Bike, CircleAlert, MoveRight, TriangleAlert } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Divider } from "primereact/divider";
-import DashboardCard from "@/components/ui/DashboardCard";
+import DashboardCard from "@/components/DashboardCard";
 import { useAlerts, useTrailers } from "@/lib/api";
 import { determineStatus } from "@/utils";
 import { useEffect, useState } from "react";
@@ -13,14 +13,16 @@ import { apiClient } from "@/lib/api/client";
 export default function Home() {
   const t = useTranslations("HomePage");
   const { trailers: vehicles, loading } = useTrailers();
-  const { alerts, loading: alertsLoading } = useAlerts();
+  const { alerts, loading: alertsLoading } = useAlerts(true);
   const activeVehiclesCount = vehicles.filter(
     (vehicle) => determineStatus(vehicle) === "On Mission",
   ).length;
   const averageDowntime =
     vehicles.length > 0
-      ? vehicles.reduce((sum, vehicle) => sum + (vehicle.average_downtime ?? 0), 0) /
-        vehicles.length
+      ? vehicles.reduce(
+          (sum, vehicle) => sum + (vehicle.average_downtime ?? 0),
+          0,
+        ) / vehicles.length
       : null;
   const technicalAvailability =
     averageDowntime === null ? null : Math.max(0, 24 - averageDowntime);
@@ -50,39 +52,42 @@ export default function Home() {
     fetchAverageKm();
   }, []);
 
-
   return (
     <div className="p-6">
       <div className="text-2xl font-semibold">{t("title")}</div>
       <div className="text-gray-400">{t("overview")}</div>
       <div className="flex flex-col gap-4 py-8 md:flex-row md:flex-wrap">
-        <DashboardCard
-          title={t("cards.totalVehicles.title")}
-          value={loading ? "—" : vehicles.length}
-          description={
-            loading
-              ? t("cards.totalVehicles.loading")
-              : t("cards.totalVehicles.description", {
-                  active: activeVehiclesCount,
-                  total: vehicles.length,
-                })
-          }
-          icon={<Bike className="h-5 w-5 text-green-600" />}
-        />
-        <DashboardCard
-          title={t("cards.alerts.title")}
-          value={alertsLoading ? "—" : alerts.length}
-          description={t("cards.alerts.description")}
-          icon={<TriangleAlert className="h-5 w-5 text-red-600" />}
-        />
+        <Link href={"/fleet"}>
+          <DashboardCard
+            title={t("cards.totalVehicles.title")}
+            value={loading ? "—" : vehicles.length}
+            description={
+              loading
+                ? t("cards.totalVehicles.loading")
+                : t("cards.totalVehicles.description", {
+                    active: activeVehiclesCount,
+                    total: vehicles.length,
+                  })
+            }
+            icon={<Bike className="h-5 w-5 text-green-600" />}
+          />
+        </Link>
+        <Link href={"/alerts"}>
+          <DashboardCard
+            title={t("cards.alerts.title")}
+            value={alertsLoading ? "—" : alerts.length}
+            description={t("cards.alerts.description")}
+            icon={<TriangleAlert className="h-5 w-5 text-red-600" />}
+          />
+        </Link>
       </div>
       <div className="flex justify-between">
         <div className="uppercase font-bold">{t("sections.stats")}</div>
         <div className="flex items-end gap-2 text-sm">
-          <Link href={"/"}>{t("seeAll")}</Link> <MoveRight />
+          <Link href={"/stats"}>{t("seeAll")}</Link> <MoveRight />
         </div>
       </div>
-      <Divider />
+      <Divider className="mt-1" />
       <div className="flex flex-col gap-4 md:flex-row md:flex-wrap">
         <DashboardCard
           title={t("cards.mileage.title")}
@@ -104,10 +109,10 @@ export default function Home() {
       <div className="flex justify-between pt-8">
         <div className="uppercase font-bold">{t("sections.alerts")}</div>
         <div className="flex items-end gap-2 text-sm">
-          <Link href={"/"}>{t("seeAll")}</Link> <MoveRight />
+          <Link href={"/alerts"}>{t("seeAll")}</Link> <MoveRight />
         </div>
       </div>
-      <Divider />
+      <Divider className="mt-1" />
       <div className="flex flex-col gap-4 md:flex-row md:flex-wrap">
         {alertsLoading ? (
           <DashboardCard

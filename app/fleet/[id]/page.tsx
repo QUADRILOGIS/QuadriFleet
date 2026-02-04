@@ -17,7 +17,8 @@ import {
   formatDate,
   calculateAge,
 } from "@/utils";
-import { AlertList, IncidentList } from "@/components";
+import AlertList from "@/components/AlertList";
+import IncidentList from "@/components/IncidentList";
 
 const TrailerMap = dynamic(() => import("@/components/TrailerMap"), {
   ssr: false,
