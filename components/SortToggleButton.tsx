@@ -19,7 +19,7 @@ export default function SortToggleButton({
   return (
     <button
       type="button"
-      className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-gray-400 px-1.5 py-0.5 text-[9px] text-gray-600"
+      className="inline-flex items-center gap-1 whitespace-nowrap rounded border border-gray-400 px-1.5 py-0.5 text-sm text-gray-600 cursor-pointer"
       onClick={onToggle}
     >
       <span className={`flex items-center justify-center gap-1`}>

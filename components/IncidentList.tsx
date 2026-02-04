@@ -43,7 +43,7 @@ export default function IncidentList({ incidents, title, noIncidentsText, severi
                 <Badge value={`${incident.seriousness}/10`} severity={getSeriousnessSeverity(incident.seriousness)} />
               </div>
               <p className="text-sm">{incident.message}</p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 {formatDateTime(incident.created_at)}
               </p>
             </div>

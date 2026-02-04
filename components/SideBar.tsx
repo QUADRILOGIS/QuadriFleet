@@ -50,28 +50,26 @@ export default function SideBar() {
       {/* Navigation */}
       <nav className="flex flex-col gap-2">
         {menuItems.map((item) => {
-          const IconComponent = item.icon;
-          return (
-            <Link
-              key={item.path}
-              href={item.path}
-              className={`
-                flex items-center gap-3 px-4 py-3 rounded-md transition-colors
-                ${
-                  pathname === item.path
-                    ? 'bg-primary text-primary-contrast font-medium'
-                    : 'text-surface-700 hover:bg-surface-100'
-                }
-              `}
-            >
-              <IconComponent size={20} />
-              <span className="text-base">{item.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
+            const IconComponent = item.icon;
+            const isActive = pathname === item.path;
 
-      {/* Footer with LocaleSwitcher */}
+            return (
+                <Link
+                    key={item.path}
+                    href={item.path}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors
+                    ${isActive
+                        ? 'bg-gray-200 font-medium border-l-4 border-primary text-gray-900'
+                        : 'text-surface-700 hover:bg-gray-100'}
+                    `}>
+                        <IconComponent size={20} />
+                        <span className="text-base">{item.label}</span>
+                </Link>
+            );
+        })}
+    </nav>
+
+        {/* Footer with LocaleSwitcher */}
       <div className="mt-auto pt-6 flex flex-col">
         <LocaleSwitcher />
       </div>

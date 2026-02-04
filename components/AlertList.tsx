@@ -42,14 +42,14 @@ export default function AlertList({ alerts, title, noAlertsText, getAlertLabel }
                 <span className="font-medium text-orange-800">{alert.piece_name}</span>
                 <Badge value={getAlertLabel(alert.status)} severity={getAlertSeverity(alert.status)} />
               </div>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-400">
                 {formatDateTime(alert.alert_date)}
               </p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-gray-500 text-center py-4">{noAlertsText}</p>
+        <p className="text-gray-400 text-center py-4">{noAlertsText}</p>
       )}
     </div>
   );

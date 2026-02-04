@@ -54,7 +54,7 @@ export default function Page() {
             onClick={() =>
               setActiveTab(activeTab === "critic" ? null : "critic")
             }
-            className="flex flex-col items-center"
+            className="flex flex-col items-center cursor-pointer"
           >
             <span className="p-tag p-tag-danger text-[10px] px-1.5 py-0.5 inline-flex items-center justify-center">
               {t("tabs.critical")}
@@ -70,7 +70,7 @@ export default function Page() {
             onClick={() =>
               setActiveTab(activeTab === "warning" ? null : "warning")
             }
-            className="flex flex-col items-center"
+            className="flex flex-col items-center cursor-pointer"
           >
             <span className="p-tag p-tag-warning text-[10px] px-1.5 py-0.5 inline-flex items-center justify-center">
               {t("tabs.warning")}
@@ -92,31 +92,40 @@ export default function Page() {
       {sortedAlerts.length === 0 ? null : (
         <div className="flex justify-end my-8">
           <Button
-            label={
-              selectMode && selectedIds.length === 0
-                ? t("actions.selectAlerts")
-                : selectedIds.length > 0
-                  ? t("actions.resolveSelection")
-                  : t("actions.resolveAlert")
-            }
+              label={
+                selectMode && selectedIds.length === 0
+                    ? t("actions.cancelAction")
+                    : selectMode && selectedIds.length > 0
+                        ? t("actions.resolveSelection")
+                        : t("actions.resolveAlert")
+              }
+            className="text-white bg-black hover:bg-gray-700 border-none"
             severity="secondary"
-            icon="pi pi-check"
+            icon={
+              selectMode && selectedIds.length === 0
+                  ? "pi pi-times"
+                  : selectMode && selectedIds.length > 0
+                      ? "pi pi-check"
+                      : "pi pi-check-circle"
+            }
             size="small"
             iconPos="right"
-            disabled={selectMode && selectedIds.length === 0}
             onClick={async () => {
               if (!selectMode) {
                 setSelectMode(true);
                 return;
               }
 
-              if (selectedIds.length === 0) return;
+              if (selectedIds.length === 0) {
+                setSelectMode(false);
+                return;
+              }
 
               try {
                 await Promise.all(
-                  selectedIds.map((id) =>
-                    apiClient.patch(`/api/alerts/${id}/resolve`),
-                  ),
+                    selectedIds.map((id) =>
+                        apiClient.patch(`/api/alerts/${id}/resolve`),
+                    ),
                 );
                 setSelectedIds([]);
                 setSelectMode(false);
@@ -140,7 +149,7 @@ export default function Page() {
             );
             const totalKm =
               trailer?.total_km_traveled !== undefined
-                ? `${trailer.total_km_traveled}km`
+                ? `${trailer.total_km_traveled} km`
                 : "—";
             const isSelected = selectedIds.includes(alert.id);
 

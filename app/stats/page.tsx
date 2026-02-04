@@ -373,7 +373,7 @@ export default function StatsPage() {
               title={t("cards.alerts")}
               value={stats?.active_alerts ?? "—"}
               description={t("cards.activeAlerts")}
-              icon={<TriangleAlert className="h-5 w-5 text-orange-500" />}
+              icon={<TriangleAlert className="h-5 w-5 text-red-700" />}
             />
           </div>
 
@@ -402,7 +402,7 @@ export default function StatsPage() {
                   title={t("cards.dailyIncidents")}
                   value={stats?.global_average.daily_incidents_average.toFixed(1) ?? "—"}
                   description={t("cards.incidentsAvgDesc")}
-                  icon={<AlertCircle className="h-5 w-5 text-orange-500" />}
+                  icon={<AlertCircle className="h-5 w-5 text-orange-400" />}
                 />
               </div>
             ) : (
@@ -415,7 +415,7 @@ export default function StatsPage() {
                     className="h-full"
                   />
                 </div>
-                <p className="text-center text-sm text-gray-500 mt-2">
+                <p className="text-center text-sm text-gray-400 mt-2">
                   {t("charts.incidentsPerDay")}
                 </p>
               </div>

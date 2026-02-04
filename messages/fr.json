@@ -76,7 +76,8 @@
     "actions": {
       "selectAlerts": "Sélectionner des alertes",
       "resolveSelection": "Résoudre la sélection",
-      "resolveAlert": "Résoudre alerte"
+      "resolveAlert": "Résoudre alerte",
+      "cancelAction": "Annuler l'action"
     },
     "states": {
       "loading": "Chargement des alertes...",

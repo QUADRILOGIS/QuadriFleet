@@ -16,7 +16,7 @@ export default function DashboardCard({
   icon,
 }: DashboardCardProps) {
   return (
-    <div className="relative rounded-xl border border-gray-200 p-3 pr-10 md:w-xs">
+    <div className="relative rounded-xl border border-gray-200 p-3 pr-10 md:w-xs hover:bg-gray-50">
       <div className="text-sm font-medium">{title}</div>
       <div className="mt-2 flex items-center gap-4">
         {value !== undefined ? (

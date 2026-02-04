@@ -76,7 +76,8 @@
     "actions": {
       "selectAlerts": "Select alerts",
       "resolveSelection": "Resolve selection",
-      "resolveAlert": "Resolve alert"
+      "resolveAlert": "Resolve alert",
+      "cancelAction": "Cancel"
     },
     "states": {
       "loading": "Loading alerts...",
