@@ -107,6 +107,7 @@
     "stats": "Statistiques",
     "fleetManagement": "Gestion de flotte",
     "alerts": "Alertes",
+    "incidents": "Incidents",
     "settings": "Paramètres",
     "logoAlt": "Logo Quadrilogis",
     "menu": "Menu"
@@ -294,6 +295,12 @@
       "basedOn": "En fonction de :",
       "selectData": "Sélectionner les données",
       "addChart": "Ajouter un graph"
+    },
+    "IncidentsPage": {
+      "title": "Gestion des incidents",
+      "incident": "Incident",
+      "activeCount": "{count} incidents en cours",
+      "loading": "Chargement des incidents...",
+      "empty": "Aucun incident en cours."
     }
-  }
 }
