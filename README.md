@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚴 QuadriFleet
 
-## Getting Started
+<p align="center">
+  <strong>Application web de gestion de flotte pour les remorques Quadrilogis</strong>
+</p>
 
-First, run the development server:
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-blue?logo=nextdotjs" alt="Next.js">
+  <img src="https://img.shields.io/badge/TypeScript-5.9-blue?logo=typescript" alt="TypeScript">
+  <img src="https://img.shields.io/badge/PrimeReact-10-green" alt="PrimeReact">
+  <img src="https://img.shields.io/badge/TailwindCSS-4-38bdf8?logo=tailwindcss" alt="TailwindCSS">
+</p>
+
+---
+
+## 👥 Équipe de développement
+
+Cette application a été réalisée par une équipe de la **promotion FIL A2 2025/2026** de l'**IMT Atlantique** :
+
+| Nom                         | Rôle                      |
+| --------------------------- | ------------------------- |
+| **Pacôme CAILLETEAU**       | Développeur Back          |
+| **Nathaniel GUITTON**       | Concepteur BDD            |
+| **Liam LE NY**              | Développeur Front Web     |
+| **Baptiste BAYCHE**         | Développeur Front Web     |
+| **Marina CARBONE**          | Designeuse                |
+| **Camille GOUAULT--LAMOUR** | Développeuse Front Mobile |
+
+---
+
+## 🎯 Objectif
+
+QuadriFleet est l'application web destinée aux managers pour :
+
+- suivre l'état de la flotte en temps réel
+- visualiser les alertes et incidents
+- consulter les statistiques d'exploitation
+- gérer les paramètres de maintenance
+
+---
+
+## 🧱 Stack technique
+
+- Next.js (App Router)
+- TypeScript
+- PrimeReact + TailwindCSS
+- next-intl (i18n)
+
+---
+
+## 🔌 API QuadriCore
+
+QuadriFleet consomme l’API **QuadriCore** pour l’authentification, les données de flotte,
+les alertes, les incidents et les statistiques.
+
+---
+
+## 🚀 Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Installer les dépendances
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Créez un fichier `.env.local` à la racine du projet :
 
-## Learn More
+```env
+API_BASE_URL="http://localhost:3001/api"
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏃 Lancement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Mode développement
+npm run dev
 
-## Deploy on Vercel
+# Build
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Production
+npm run start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+L'application est accessible sur `http://localhost:3000`.
+
+---
+
+## 📁 Structure
+
+```
+app/            # Pages (App Router)
+components/     # Composants UI
+lib/            # API client + hooks
+messages/       # i18n (fr/en)
+public/         # Assets statiques
+types/          # Types partagés
+```
+
+---
+
+## 🌍 Internationalisation
+
+Les traductions sont gérées via `next-intl` :
+
+- `messages/fr.json`
+- `messages/en.json`
+
+---
+
+<p align="center">
+  <strong>QuadriFleet</strong> - IMT Atlantique - FIL A2 2025/2026
+</p>
