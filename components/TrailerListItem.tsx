@@ -12,7 +12,7 @@ import {
 } from "@/utils";
 import type { ApiTrailer } from "@/types";
 
-const Badge = ({ value, severity }: { value: string; severity: string }) => {
+const Badge = ({ value, severity }: { value: string; severity: string | undefined }) => {
   const colors = {
     danger: 'bg-red-100 text-red-700',
     warning: 'bg-orange-100 text-orange-700',

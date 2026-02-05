@@ -1,7 +1,22 @@
 {
   "MetaData": {
     "title": "QuadriFleet",
+    "shortTitle": "QuadriFleet",
     "description": "Manage your vehicle fleet. Track performance, monitor alerts and optimize maintenance for more efficient logistics."
+  },
+  "InstallPrompt": {
+    "title": "Install QuadriFleet",
+    "install": "Install app",
+    "understood": "Got it",
+    "iosInstructions": "To install the app on your iPhone:",
+    "iosStep1": "Tap the Share button",
+    "iosStep2": "Scroll down and select 'Add to Home Screen'",
+    "iosStep3": "Tap 'Add'",
+    "chromeInstructions": "To install the application:",
+    "chromeStep1": "Tap the menu ⋮ (3 dots)",
+    "chromeStep2": "Select 'Install app' or 'Add to Home Screen'",
+    "chromeStep3": "Confirm installation",
+    "visitHint": "Note: On some browsers, you'll need to visit the site multiple times before installation is available."
   },
   "LoginPage": {
     "title": "Sign in",
