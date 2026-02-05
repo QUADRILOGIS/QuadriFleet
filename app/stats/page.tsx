@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Chart } from "primereact/chart";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-import { Bike, TriangleAlert, ChartBar, X, Clock8, AlertCircle } from "lucide-react";
+import { Bike, TriangleAlert, X, Clock8, AlertCircle, BarChart3 } from "lucide-react";
 import DashboardCard from "@/components/DashboardCard";
 import { apiClient } from "@/lib/api/client";
 import { Divider } from "primereact/divider";
@@ -310,7 +310,7 @@ export default function StatsPage() {
         onClick={onToggle}
         className={`p-1.5 rounded ${!showChart ? "bg-gray-200" : "bg-transparent"}`}
       >
-        <ChartBar className="h-4 w-4" />
+        <BarChart3 className="h-4 w-4" />
       </button>
     </div>
   );
@@ -338,7 +338,7 @@ export default function StatsPage() {
               activeTab === 0 ? "bg-white shadow-sm" : "text-gray-500"
             }`}
           >
-            <ChartBar className="h-4 w-4" />
+            <BarChart3 className="h-4 w-4" />
           </button>
           <button
             onClick={() => setActiveTab(1)}
