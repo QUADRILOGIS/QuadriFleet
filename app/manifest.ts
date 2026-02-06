@@ -8,7 +8,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         name: t('title'),
         short_name: t('shortTitle'),
         description: t('description'),
-        theme_color: '#ffffff',
+        theme_color: '#000000',
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
@@ -16,15 +16,10 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         start_url: '/',
         icons: [
             {
-                src: 'logo.svg',
-                sizes: '192x192',
-                type: 'image/png'
-            },
-            {
-                src: 'logo.svg',
-                sizes: '512x512',
-                type: 'image/png',
-            },
+                "src": "icons/icon.svg",
+                "sizes": "any",
+                "type": "image/svg+xml"
+            }
         ],
     };
 }

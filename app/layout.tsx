@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
             title: t("title"),
         },
         icons: {
-            apple: "/icons/icon-192x192.png",
+            apple: "/icons/icon.svg",
         },
     };
 }
