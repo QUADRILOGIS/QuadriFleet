@@ -24,7 +24,7 @@ Cette application a été réalisée par une équipe de la **promotion FIL A2 20
 | **Liam LE NY**              | Développeur Front Web     |
 | **Baptiste BAYCHE**         | Développeur Front Web     |
 | **Marina CARBONE**          | Designeuse                |
-| **Camille GOUAULT--LAMOUR** | Développeuse Front Mobile |
+| **Camille GOUAULT--LAMOUR** | Développeuse Fullstack Mobile |
 
 ---
 
