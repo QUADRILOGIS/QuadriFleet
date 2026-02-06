@@ -212,7 +212,7 @@ export default function TrailerDetailPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {performance.map((perf, index) => (
+                      {[...performance].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((perf, index) => (
                         <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
                           <td className="py-3 px-3">{formatDate(perf.date)}</td>
                           <td className="text-right py-3 px-3">{perf.distance} km</td>

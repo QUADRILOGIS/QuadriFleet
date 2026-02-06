@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* PrimeReact Dropdown hover style */
+.p-dropdown:hover {
+  border-color: #171717 !important;
+}
+
+.p-dropdown:focus,
+.p-dropdown.p-focus {
+  border-color: #171717 !important;
+  box-shadow: 0 0 0 1px #171717 !important;
+}

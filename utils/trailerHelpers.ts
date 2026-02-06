@@ -70,7 +70,7 @@ export function determineStatus(trailer: ApiTrailer): string {
   }
 
   // 3. En service : autonomie <50km ET daily_km >0 ET pas à l'entrepôt
-  if (trailer.autonomy < 50 && trailer.daily_km_traveled > 0 && !atWarehouse) {
+  if (trailer.daily_km_traveled > 0 && !atWarehouse) {
     return "On Mission";
   }
 

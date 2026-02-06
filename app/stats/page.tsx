@@ -597,13 +597,17 @@ export default function StatsPage() {
           </div>
 
           <div className="flex justify-center mb-8">
-            <Button
-              label={t("builder.addChart")}
-              icon="pi pi-plus"
+            <button
               onClick={addCustomChart}
               disabled={!selectedDataType || !selectedTimeFrame}
-              className="p-button-outlined"
-            />
+              className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+                !selectedDataType || !selectedTimeFrame
+                  ? 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed'
+                  : 'bg-gray-900 text-white border-gray-900 hover:bg-gray-800'
+              }`}
+            >
+              {t("builder.addChart")}
+            </button>
           </div>
 
           {/* Custom Charts Display */}
