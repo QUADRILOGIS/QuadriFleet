@@ -71,14 +71,14 @@ export default function Page() {
       <section className="mx-auto flex min-h-screen max-w-md items-center w-full">
         <Card
           title={t("title")}
-          className="w-full uppercase"
+          className="bg-white rounded-lg border border-gray-200 p-4 uppercase"
           pt={{ title: { className: "text-center tracking-[0.2em]" } }}
         >
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex justify-end text-xs">
               <Link
                 href="/login"
-                className="rounded-full px-3 py-1 transition normal-case"
+                className="px-3 py-1 transition normal-case text-gray-500 hover:font-bold"
               >
                 {t("alreadyAccount")}
               </Link>
@@ -136,11 +136,11 @@ export default function Page() {
               />
             </div>
 
-            {error ? <p className="text-sm normal-case">{error}</p> : null}
+            {error ? <p className="text-sm normal-case text-red-500">{error}</p> : null}
 
             <div className="flex flex-wrap items-center justify-between gap-4 text-sm normal-case">
               <span />
-              <Button type="submit" label={t("submit")} loading={loading} />
+              <Button type="submit" label={t("submit")} loading={loading} className="bg-black border-none hover:bg-gray-800" />
             </div>
           </form>
         </Card>
