@@ -21,12 +21,21 @@ export default function InstallPrompt() {
         const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
         setIsIOS(iOS);
 
-        // Détecte si c'est un ordinateur (pas mobile/tablette)
+        // Détecte si c'est un ordinateur
         const desktop = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         setIsDesktop(desktop);
 
-        const standalone = window.matchMedia('(display-mode: standalone)').matches;
-        setIsStandalone(standalone);
+        // Détecte si l'app est déjà installée (plusieurs méthodes)
+        const standaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+        const fullscreenMode = window.matchMedia('(display-mode: fullscreen)').matches;
+        const minimalUI = window.matchMedia('(display-mode: minimal-ui)').matches;
+
+        // Pour iOS
+        const iosStandalone = (window.navigator as any).standalone === true;
+
+        // Si l'une de ces conditions est vraie, l'app est installée
+        const installed = standaloneMode || fullscreenMode || minimalUI || iosStandalone;
+        setIsStandalone(installed);
 
         const handler = (e: Event) => {
             e.preventDefault();
@@ -35,7 +44,16 @@ export default function InstallPrompt() {
 
         window.addEventListener('beforeinstallprompt', handler);
 
-        return () => window.removeEventListener('beforeinstallprompt', handler);
+        // Écoute aussi l'événement d'installation réussie
+        window.addEventListener('appinstalled', () => {
+            setIsStandalone(true);
+            setShowInstructions(false);
+        });
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handler);
+            window.removeEventListener('appinstalled', () => {});
+        };
     }, []);
 
     const handleInstall = async () => {
@@ -97,19 +115,20 @@ export default function InstallPrompt() {
                                 </ol>
                             </div>
                         ) : isDesktop ? (
-                            // Instructions Desktop (Chrome/Edge/Brave)
+                            // Instructions Desktop
                             <div className="space-y-4">
                                 <p className="text-sm text-gray-600">{t('desktopInstructions')}</p>
                                 <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
                                     <li>{t('desktopStep1')}</li>
                                     <li>{t('desktopStep2')}</li>
+                                    <li>{t('desktopStep3')}</li>
                                 </ol>
                                 <p className="text-xs text-gray-500 italic">
                                     {t('visitHint')}
                                 </p>
                             </div>
                         ) : (
-                            // Instructions Chrome/Android (Mobile)
+                            // Instructions Android
                             <div className="space-y-4">
                                 <p className="text-sm text-gray-600">{t('chromeInstructions')}</p>
                                 <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
