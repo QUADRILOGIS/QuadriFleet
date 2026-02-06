@@ -49,7 +49,7 @@ export default function AlertCard({
 
   return (
     <div
-      className={`relative rounded-xl border p-3 pr-12 md:w-xs ${
+      className={`relative rounded-xl border p-3 pr-12 w-full md:w-[48%] lg:w-[32%] ${
         selected ? "border-black" : "border-gray-200"
       }`}
       onClick={selectable ? onToggleSelect : undefined}
