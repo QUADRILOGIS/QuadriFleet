@@ -68,11 +68,6 @@ export default function SideBar() {
             );
         })}
     </nav>
-
-        {/* Footer with LocaleSwitcher */}
-      <div className="mt-auto pt-6 flex flex-col">
-        <LocaleSwitcher />
-      </div>
     </div>
   );
 
