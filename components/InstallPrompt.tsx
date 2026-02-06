@@ -13,13 +13,17 @@ export default function InstallPrompt() {
     const t = useTranslations('InstallPrompt');
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
     const [isIOS, setIsIOS] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
     const [isStandalone, setIsStandalone] = useState(false);
     const [showInstructions, setShowInstructions] = useState(false);
 
     useEffect(() => {
         const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsIOS(iOS);
+
+        // Détecte si c'est un ordinateur (pas mobile/tablette)
+        const desktop = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        setIsDesktop(desktop);
 
         const standalone = window.matchMedia('(display-mode: standalone)').matches;
         setIsStandalone(standalone);
@@ -75,7 +79,6 @@ export default function InstallPrompt() {
                                 {t('title')}
                             </h3>
                             <button
-
                                 onClick={() => setShowInstructions(false)}
                                 className="hover:text-red-500 cursor-pointer"
                             >
@@ -93,8 +96,20 @@ export default function InstallPrompt() {
                                     <li>{t('iosStep3')}</li>
                                 </ol>
                             </div>
+                        ) : isDesktop ? (
+                            // Instructions Desktop (Chrome/Edge/Brave)
+                            <div className="space-y-4">
+                                <p className="text-sm text-gray-600">{t('desktopInstructions')}</p>
+                                <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                                    <li>{t('desktopStep1')}</li>
+                                    <li>{t('desktopStep2')}</li>
+                                </ol>
+                                <p className="text-xs text-gray-500 italic">
+                                    {t('visitHint')}
+                                </p>
+                            </div>
                         ) : (
-                            // Instructions Chrome/Android
+                            // Instructions Chrome/Android (Mobile)
                             <div className="space-y-4">
                                 <p className="text-sm text-gray-600">{t('chromeInstructions')}</p>
                                 <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">

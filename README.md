@@ -1,7 +1,7 @@
 # 🚴 QuadriFleet
 
 <p align="center">
-  <strong>Application web de gestion de flotte pour les remorques Quadrilogis</strong>
+  <strong>Application web de gestion de flotte pour les véhicules Quadrilogis</strong>
 </p>
 
 <p align="center">

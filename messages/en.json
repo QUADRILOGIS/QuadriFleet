@@ -5,17 +5,20 @@
     "description": "Manage your vehicle fleet. Track performance, monitor alerts and optimize maintenance for more efficient logistics."
   },
   "InstallPrompt": {
-    "title": "Install QuadriFleet",
+    "title": "Install Quadri Fleet",
     "install": "Install app",
     "understood": "Got it",
     "iosInstructions": "To install the app on your iPhone:",
     "iosStep1": "Tap the Share button",
     "iosStep2": "Scroll down and select 'Add to Home Screen'",
     "iosStep3": "Tap 'Add'",
-    "chromeInstructions": "To install the application:",
+    "chromeInstructions": "To install the app on Android:",
     "chromeStep1": "Tap the menu ⋮ (3 dots)",
     "chromeStep2": "Select 'Install app' or 'Add to Home Screen'",
     "chromeStep3": "Confirm installation",
+    "desktopInstructions": "To install the app on your computer:",
+    "desktopStep1": "Click the install icon in the address bar (on the right)",
+    "desktopStep2": "Click 'Install' in the confirmation popup",
     "visitHint": "Note: On some browsers, you'll need to visit the site multiple times before installation is available."
   },
   "LoginPage": {
@@ -175,8 +178,8 @@
     "cardSerialPlaceholder": "e.g. CARD-12345",
     "loading": "Loading trailers...",
     "loadNotAvailable": "N/A",
-    "noVehicle": "No bikes",
-    "noVehicleOn": "No bikes on this page",
+    "noVehicle": "No vehicle",
+    "noVehicleOn": "No vehicle on this page",
     "withAlerts": "with alerts",
     "withIncidents": "with incidents",
     "viewList": "List view",
